@@ -1,3 +1,3 @@
 # rpi-nvme
 
-https://raw.githubusercontent.com/cms66/rpi-home/main/rpi_setup_base.sh
+https://raw.githubusercontent.com/cms66/rpi-nvme/main/setup_base.sh
