@@ -19,7 +19,7 @@ setup_local_server()
 	apt-get -y install nfs-kernel-server
 	read -p "Path to directory containing share (press enter for default = /var/): " userdir
 	nfsdir=${userdir:="/var/"}
- 	tar -xvzf $usrpath/.pisetup/rpi-home/nfs-export.tgz -C $nfsdir
+ 	tar -xvzf $usrpath/.pisetup/rpi-nvme/nfs-export.tgz -C $nfsdir
   	nfspath="${nfsdir}nfs-export" 
 	mkdir $usrpath/share$pinum
 	chown -R $usrname:$usrname $nfspath
