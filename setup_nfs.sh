@@ -16,7 +16,7 @@ show_nfs_menu()
 # Creates default share /var/nfs-export + local mount
 setup_local_server()
 {
-	#apt-get -y install nfs-kernel-server
+	apt-get -y install nfs-kernel-server
 	read -p "Path to directory containing share (press enter for default = /var/): " userdir
 	nfsdir=${userdir:="/var/"}
  	tar -xvzf $usrpath/.pisetup/rpi-nvme/nfs-export.tgz -C $nfsdir
