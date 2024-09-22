@@ -1,4 +1,6 @@
 # Install SDM
+apt-get update
+apt-get upgrade
 curl -L https://raw.githubusercontent.com/gitbls/sdm/master/EZsdmInstaller | bash
 
 # Download latest images and extract
