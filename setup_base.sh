@@ -6,6 +6,7 @@
 usrname=$(logname)
 piname=$(hostname)
 localnet=$(ip route | awk '/proto/ && !/default/ {print $1}')
+repo="rpi-nvme"
 
 # Install/update software
 apt-get -y update
@@ -15,12 +16,12 @@ apt-get -y install python3-dev gcc g++ gfortran libraspberrypi-dev libomp-dev gi
 # Git setup
 mkdir /home/$usrname/.pisetup
 cd /home/$usrname/.pisetup
-git clone https://github.com/cms66/rpi-nvme.git
+git clone https://github.com/cms66/$repo.git
 chown -R $usrname:$usrname /home/$usrname/.pisetup
 
 # Add bash alias for setup and test menu
-echo "alias mysetup=\"sudo sh ~/.pisetup/rpi-nvme/setup_menu.sh\"" >> /home/$usrname/.bashrc
-echo "alias mytest=\"sudo sh ~/.pisetup/rpi-nvme/test_menu.sh\"" >> /home/$usrname/.bashrc
+echo "alias mysetup=\"sudo sh ~/.pisetup/$repo/setup_menu.sh\"" >> /home/$usrname/.bashrc
+echo "alias mytest=\"sudo sh ~/.pisetup/$repo/test_menu.sh\"" >> /home/$usrname/.bashrc
 
 # - Create python Virtual Environment (with access to system level packages) and bash alias for activation
 python -m venv --system-site-packages /home/$usrname/.venv
@@ -28,7 +29,7 @@ echo "alias myvp=\"source ~/.venv/bin/activate\"" >> /home/$usrname/.bashrc
 chown -R $usrname:$usrname /home/$usrname/.venv
 
 # create local folder structure for created user with code examples
-tar -xvzf /home/$usrname/.pisetup/rpi-nvme/local.tgz -C /home/$usrname
+tar -xvzf /home/$usrname/.pisetup/$repo/local.tgz -C /home/$usrname
 chown -R $usrname:$usrname /home/$usrname/local/
 
 # Configure fail2ban
