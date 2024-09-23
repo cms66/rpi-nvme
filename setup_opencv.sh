@@ -54,6 +54,7 @@ install_local()
 install_server()
 {
 	install_local
+ 	cp -r $usrpath/.venv/lib/python3.11/site-packages/cv2 $usrpath/share1/lib/python3/
 	if grep -F "/usr/local" "/etc/exports"; then
   		echo "export exists"
   	else
