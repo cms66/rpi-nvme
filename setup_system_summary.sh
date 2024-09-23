@@ -3,6 +3,7 @@ printf "System summary \n--------------\n"
 printf "Model: $pimodel \n"
 printf "Revision: $pirev \n"
 printf "Architecture: $osarch \n"
+printf "Firmware: $(rpi-eeprom-update) \n"
 printf "Memory: \n$pimem \n"
 printf "Firewall "
 ufw status
