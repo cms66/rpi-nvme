@@ -48,8 +48,7 @@ install_local()
 		sed -i "s/CONF_SWAPSIZE=2048/CONF_SWAPSIZE=100/g" /etc/dphys-swapfile
 		/etc/init.d/dphys-swapfile restart
 	fi
- 	opencv_version
-	read -p "OpenCV 4.10.0 - Local install finished, press enter to return to menu" input
+	read -p "OpenCV $(opencv_version) Local install finished, press enter to return to menu" input
 }
 
 install_server()
@@ -61,7 +60,7 @@ install_server()
 		echo "/usr/local $localnet(rw,sync,no_subtree_check,no_root_squash)" >> /etc/exports
   		exportfs -ra
 	fi
-	read -p "OpenCV 4.10.0 - Server install finished, press enter to return to menu" input
+	read -p "OpenCV $(opencv_version) Server install finished, press enter to return to menu" input
 }
 
 # 3- Install to run from server
@@ -82,7 +81,7 @@ install_client()
   	ldconfig
    	#su -c "scp -r multipi@pinode-$nfsrem:$usrpath/.venv/lib/python3.11/site-packages/cv2 $usrpath/.venv/lib/python3.11/site-packages/" multipi
     	cp -r $usrpath/share1/lib/python3/cv2 $usrpath/.venv/lib/python3.11/site-packages/
-	read -p "OpenCV - Client install done, press enter to return to menu" input
+	read -p "OpenCV $(opencv_version) Client install done, press enter to return to menu" input
 }
 
 # Run in Python Virtual Environment
