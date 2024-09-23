@@ -30,9 +30,10 @@ show_main_menu()
 3) Security \n\
 4) OpenMPI \n\
 5) OpenCV \n\
-6) Update setup \n\
-7) Update system \n\
-8) System summary \n"
+6) SDM \n\
+7) Update setup \n\
+8) Update system \n\
+9) System summary \n"
 }
 
 show_main_menu
@@ -46,9 +47,10 @@ while [ $n != "x" ]; do
 		3) sh $usrpath/.pisetup/rpi-nvme/setup_security.sh;;
 		4) sh $usrpath/.pisetup/rpi-nvme/setup_openmpi.sh;;
 		5) sh $usrpath/.pisetup/rpi-nvme/setup_opencv.sh;;
-  		6) sh $usrpath/.pisetup/rpi-nvme/setup_git_pull_setup.sh;;
-    		7) sh $usrpath/.pisetup/rpi-nvme/setup_update_system.sh;;
-    		8) sh $usrpath/.pisetup/rpi-nvme/setup_system_summary.sh;;
+    		6) sh $usrpath/.pisetup/rpi-nvme/setup_sdm.sh;;
+    		7) sh $usrpath/.pisetup/rpi-nvme/setup_git_pull_setup.sh;;
+    		8) sh $usrpath/.pisetup/rpi-nvme/setup_update_system.sh;;
+    		9) sh $usrpath/.pisetup/rpi-nvme/setup_system_summary.sh;;    
 		*) read -p "invalid option - press enter to return to menu" errkey;;
 	esac
 	show_main_menu
