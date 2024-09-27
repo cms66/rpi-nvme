@@ -4,7 +4,7 @@
 # - Add option for install location (default = /usr/local)
 # - Add option for setting image directory (defaults to local share for performance)
 
-imgdir=$usrpath/share$pinum/sdm/
+imgdir=$usrpath/share$pinum/sdm/images
 # Latest images
 verlatest="2024-07-04"
 url64lite=https://downloads.raspberrypi.org//raspios_lite_arm64/images/raspios_lite_arm64-$verlatest/$verlatest-raspios-bookworm-arm64-lite.img.xz
@@ -23,8 +23,11 @@ show_sdm_menu()
 
 install_local()
 {
-	# Default setup
+	# Default setup - install to /usr/local
 	curl -L https://raw.githubusercontent.com/gitbls/sdm/master/EZsdmInstaller | bash
+ 	mkdir $usrpath/share$pinum/sdm/images/current
+  	mkdir $usrpath/share$pinum/sdm/images/latest
+   	mkdir $usrpath/share$pinum/sdm/images/archive
  	download_latest_images
 }
 
@@ -49,6 +52,7 @@ download_latest_images()
   	wget -P $imgdir $url32lite
    	wget -P $imgdir $url32desk
     	unxz $imgdir/*.xz
+	read -p "Downloads to $imgdir complete, press enter to return to menu" input
 }
 
 show_sdm_menu
