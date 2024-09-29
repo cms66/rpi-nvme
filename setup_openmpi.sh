@@ -57,7 +57,7 @@ install_server()
 		echo "/usr/local $localnet(rw,sync,no_subtree_check,no_root_squash)" >> /etc/exports
   		exportfs -ra
 	fi
- 	ufw allow from $localnet to $localnet
+ 	#ufw allow from $localnet to $localnet
 	read -p "OpenMPI $instver - Server install finished, press enter to return to menu" input
 }
 
