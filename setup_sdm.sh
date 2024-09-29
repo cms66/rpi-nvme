@@ -1,12 +1,10 @@
 # SDM Drive Imager
 # TODO
-# - Check latest version from https://downloads.raspberrypi.org/operating-systems-categories.json
 # - Add option for install location (default = /usr/local)
 # - Add option for setting image directory (defaults to local share for performance)
 
 imgdir=$usrpath/share$pinum/sdm/images
 # Latest images
-#verlatest="2024-07-04"
 verlatest=$(curl -s https://downloads.raspberrypi.org/operating-systems-categories.json | grep "releaseDate" | head -n 1 | cut -d '"' -f 4)
 url64lite=https://downloads.raspberrypi.org//raspios_lite_arm64/images/raspios_lite_arm64-$verlatest/$verlatest-raspios-bookworm-arm64-lite.img.xz
 url64desk=https://downloads.raspberrypi.org/raspios_arm64/images/raspios_arm64-$verlatest/$verlatest-raspios-bookworm-arm64.img.xz
@@ -26,9 +24,9 @@ install_local()
 {
 	# Default setup - install to /usr/local
 	curl -L https://raw.githubusercontent.com/gitbls/sdm/master/EZsdmInstaller | bash
- 	mkdir $usrpath/share$pinum/sdm/images/current
-  	mkdir $usrpath/share$pinum/sdm/images/latest
-   	mkdir $usrpath/share$pinum/sdm/images/archive
+ 	mkdir -p $usrpath/share$pinum/sdm/images/current
+  	mkdir -p $usrpath/share$pinum/sdm/images/latest
+   	mkdi -p $usrpath/share$pinum/sdm/images/archive
  	download_latest_images
 }
 
@@ -40,7 +38,7 @@ install_server()
   	else
 		  echo "/usr/local $localnet(rw,sync,no_subtree_check,no_root_squash)" >> /etc/exports
   		exportfs -ra
-      ufw allow from $localnet to $localnet
+      #ufw allow from $localnet to $localnet
 	fi
 	read -p "SDM - Server install finished, press enter to return to menu" input
 }
