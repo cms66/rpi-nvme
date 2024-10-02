@@ -24,7 +24,7 @@ export osarch
 show_main_menu()
 {
 	clear
-	printf "Setup Main menu \n--------------\n\
+	printf "Setup Main menu ($hostname)\n--------------\n\
 1) Hardware \n\
 2) NFS \n\
 3) Security \n\
