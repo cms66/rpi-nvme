@@ -5,6 +5,7 @@ printf "Revision: $pirev \n"
 printf "Architecture: $osarch \n"
 printf "Firmware: $(rpi-eeprom-update) \n"
 printf "Memory: \n$pimem \n"
+printf "Storage: $(lsblk) \n"
 printf "Firewall "
 ufw status
 read -p "Press enter to return to menu" input
