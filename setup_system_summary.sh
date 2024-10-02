@@ -1,8 +1,8 @@
 clear
 #printf "System summary - $(hostname))\n--------------\n"
 my_string="System summary ($(hostname))"
-echo $my_string\n;printf -- '=%.0s' $(seq 1 ${#my_string})
-printf "Model: $pimodel \n"
+echo $my_string;printf -- '=%.0s' $(seq 1 ${#my_string})
+printf "\nModel: $pimodel \n"
 printf "Revision: $pirev \n"
 printf "Architecture: $osarch \n"
 printf "Firmware: $(rpi-eeprom-update) \n"
