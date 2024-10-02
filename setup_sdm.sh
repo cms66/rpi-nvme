@@ -1,9 +1,10 @@
 # SDM Drive Imager
 # TODO
+# - Save/read settings from /etc/sdm/custom.conf
 # - Add option for install location (default = /usr/local)
 # - Add option for setting image directory (defaults to local share for performance)
 # - Add option for version change e.g Bullseye/Bookworm
-# Add check for latest update for current and last versions
+# - Add check for latest update for current and last versions
 
 imgdir=$usrpath/share$pinum/sdm/images
 # Latest images
@@ -19,17 +20,20 @@ show_sdm_menu()
 	printf "SDM Drive Imager setup menu \n----------\n\
  1) Install - local \n\
  2) Install - server \n\
- 3) Download latest images \n"
+ 3) Download latest images \n\
+ 4) Customize image \n\
+ 5) Burn image \n"
 }
 
 install_local()
 {
 	# Default setup - install to /usr/local
-	curl -L https://raw.githubusercontent.com/gitbls/sdm/master/EZsdmInstaller | bash
- 	mkdir -p $usrpath/share$pinum/sdm/images/current
-  	mkdir -p $usrpath/share$pinum/sdm/images/latest
-   	mkdi -p $usrpath/share$pinum/sdm/images/archive
-    	chmod -R $usrname:$usrname $usrpath/share$pinum/sdm
+	#curl -L https://raw.githubusercontent.com/gitbls/sdm/master/EZsdmInstaller | bash
+ 	# Create directories for images
+ 	mkdir -p $imgdir/current
+  	mkdir -p $imgdir/latest
+   	mkdir -p $imgdir/archive
+    	chown -R $imgdir
  	download_latest_images
 }
 
@@ -61,9 +65,14 @@ download_latest_images()
 
 customize_image()
 {
-	
+	# Select image
 	read -p "Password for $usrname: " usrpass
 	sdm --customize --plugin user:"adduser=$usrname|password=$usrpass" --plugin L10n:host --plugin disables:piwiz --expand-root --regen-ssh-host-keys --restart 
+}
+
+burn_image()
+{
+
 }
 
 show_sdm_menu
@@ -73,6 +82,8 @@ while [ $n != "x" ]; do
 		1) install_local;;
 		2) install_server;;
 		3) download_latest_images;;
+		4) customize_image;;
+		5) burn_image;;  
   		*) read -p "invalid option - press enter to continue" errkey;;
 	esac
 	show_sdm_menu
