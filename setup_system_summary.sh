@@ -1,5 +1,5 @@
 clear
-printf "System summary $(hostname)\n--------------\n"
+printf "System summary ($(hostname))\n--------------\n"
 printf "Model: $pimodel \n"
 printf "Revision: $pirev \n"
 printf "Architecture: $osarch \n"
