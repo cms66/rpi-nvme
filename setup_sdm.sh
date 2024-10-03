@@ -70,7 +70,7 @@ customize_image()
  	imgmod=$imgdir/latest/2024-07-04-raspios-bookworm-arm64.img
   	# Set target filename + copy to current 
    	imgout=$imgdir/current/2024-07-04_64desk.img
-	cp $imgmod imgout
+	cp $imgmod $imgout
 	# - current
  
   	# Set username/password
