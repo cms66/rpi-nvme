@@ -4,7 +4,7 @@
 # - Add option for install location (default = /usr/local)
 # - Add option for setting image directory (defaults to local share for performance)
 # - Add option for version change e.g Bullseye/Bookworm
-# - Add check for latest update for current and last versions
+# - Add check latest update for current and last versions
 
 imgdir=$usrpath/share$pinum/sdm/images
 # Latest images
@@ -53,7 +53,7 @@ install_server()
 download_latest_images()
 {
 	# Replace uncustomized latest images
-  	rm $imgdir/latest/*.img
+  	rm -rf $imgdir/latest/*.img
 	# Download latest images and extract
 	wget -P $imgdir/latest $url64lite
  	wget -P $imgdir/latest $url64desk
@@ -65,14 +65,20 @@ download_latest_images()
 
 customize_image()
 {
-	# Select image
+	# Select image from
+ 	# - latest
+  	# - current
+ 	imgmod=$imgdir/latest/
 	read -p "Password for $usrname: " usrpass
 	sdm --customize --plugin user:"adduser=$usrname|password=$usrpass" --plugin L10n:host --plugin disables:piwiz --expand-root --regen-ssh-host-keys --restart 
 }
 
 burn_image()
 {
-
+	# Create list for drive selection
+ 	# lsblk
+ 	drv
+	sdm --burn /dev/nvme0n1 --hostname pinode-2 --expand-root 2024-07-04-raspios-bookworm-arm64.img
 }
 
 show_sdm_menu
