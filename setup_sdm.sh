@@ -84,8 +84,8 @@ burn_image()
  	imgburn=$imgdir/current/2024-07-04_64desk.img
 	# Create list for drive selection
  	# lsblk
- 	drvtarget=
-	sdm --burn /dev/nvme0n1 --hostname pinode-2 --expand-root 2024-07-04-raspios-bookworm-arm64.img
+ 	drvtarget=sda
+	sdm --burn /dev/$drvtarget --hostname pinode-5 --expand-root $imgburn
 }
 
 show_sdm_menu
