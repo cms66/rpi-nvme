@@ -33,7 +33,7 @@ install_local()
  	mkdir -p $imgdir/current
   	mkdir -p $imgdir/latest
    	mkdir -p $imgdir/archive
-    	chown -R $imgdir
+    	chown -R $usrname:$usrname $imgdir
  	download_latest_images
 }
 
@@ -60,24 +60,31 @@ download_latest_images()
   	wget -P $imgdir/latest $url32lite
    	wget -P $imgdir/latest $url32desk
     	unxz $imgdir/latest/*.xz
-     	read -p "Downloads to $imgdir/latest complete, press enter to return to menu" input
+     	read -p "Downloads for $verlatest to $imgdir/latest complete, press enter to return to menu" input
 }
 
 customize_image()
 {
 	# Select image from
  	# - latest
-  	# - current
- 	imgmod=$imgdir/latest/
+ 	imgmod=$imgdir/latest/2024-07-04-raspios-bookworm-arm64.img
+  	# Set target filename + copy to current 
+   	imgout=$imgdir/current/2024-07-04_64desk.img
+	cp $imgmod imgout
+	# - current
+ 
+  	# Set username/password
 	read -p "Password for $usrname: " usrpass
-	sdm --customize --plugin user:"adduser=$usrname|password=$usrpass" --plugin L10n:host --plugin disables:piwiz --expand-root --regen-ssh-host-keys --restart 
+	sdm --customize --plugin user:"adduser=$usrname|password=$usrpass" --plugin L10n:host --plugin disables:piwiz --expand-root --regen-ssh-host-keys --restart $imgout
 }
 
 burn_image()
 {
+	# Select image
+ 	imgburn=$imgdir/current/2024-07-04_64desk.img
 	# Create list for drive selection
  	# lsblk
- 	drv
+ 	drvtarget=
 	sdm --burn /dev/nvme0n1 --hostname pinode-2 --expand-root 2024-07-04-raspios-bookworm-arm64.img
 }
 
