@@ -8,6 +8,16 @@
 # - Add check latest update for current and last versions
 # - Add WiFi settings to custom.conf
 
+# Define a custom error handler function
+handle_error()
+{
+    echo "An error occurred: $1"
+    # Additional error handling code can go here
+}
+
+# Set the error handler to be called when an error occurs
+trap 'handle_error "Something went wrong!"' ERR
+
 instdir="/usr/local/sdm" # Default installation directory (target for custom.conf)
 imgdir="$usrpath/share$pinum/sdm/images" # Default image directory
 # Latest images
@@ -16,11 +26,6 @@ url64lite=https://downloads.raspberrypi.org//raspios_lite_arm64/images/raspios_l
 url64desk=https://downloads.raspberrypi.org/raspios_arm64/images/raspios_arm64-$verlatest/$verlatest-raspios-bookworm-arm64.img.xz
 url32lite=https://downloads.raspberrypi.com/raspios_lite_armhf/images/raspios_lite_armhf-$verlatest/$verlatest-raspios-bookworm-armhf-lite.img.xz
 url32desk=https://downloads.raspberrypi.com/raspios_armhf/images/raspios_armhf-$verlatest/$verlatest-raspios-bookworm-armhf.img.xz
-
-read_config()
-(
-	cat $instdir/custom.conf
-)
 
 show_sdm_menu()
 {
