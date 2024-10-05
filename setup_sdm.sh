@@ -21,7 +21,7 @@ show_sdm_menu()
 	clear
 	printf "SDM Drive Imager setup menu \n----------\n\
  1) Install - local \n\
- 2) Install - server \n\ 
+ 2) Install - server \n\
  3) Download latest images \n\
  4) Customize image \n\
  5) Burn image \n"
