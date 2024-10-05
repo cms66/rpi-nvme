@@ -6,9 +6,8 @@
 # - Add option for setting image directory (defaults to local share for performance)
 # - Add option for version change e.g Bullseye/Bookworm
 # - Add check latest update for current and last versions
-# - Add WiFi settings to custom.conf
 
-# Define a custom error handler function
+# Error handler
 handle_error()
 {
     echo "An error occurred: $1"
