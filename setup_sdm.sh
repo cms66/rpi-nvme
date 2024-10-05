@@ -26,6 +26,12 @@ url64desk=https://downloads.raspberrypi.org/raspios_arm64/images/raspios_arm64-$
 url32lite=https://downloads.raspberrypi.com/raspios_lite_armhf/images/raspios_lite_armhf-$verlatest/$verlatest-raspios-bookworm-armhf-lite.img.xz
 url32desk=https://downloads.raspberrypi.com/raspios_armhf/images/raspios_armhf-$verlatest/$verlatest-raspios-bookworm-armhf.img.xz
 
+read_config()
+{
+	cat $instdir/custom.conf
+ 	read -p "Current config, press enter to return to menu" input
+}
+
 show_sdm_menu()
 {
 	clear
