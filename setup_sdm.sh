@@ -29,7 +29,8 @@ url32desk=https://downloads.raspberrypi.com/raspios_armhf/images/raspios_armhf-$
 read_config()
 {
 	cat $instdir/custom.conf
- 	readarray -t a < $instdir/custom.conf
+ 	#readarray -t a < $instdir/custom.conf
+  	awk '{print NR,$0}' $instdir/custom.conf 
  	read -p "Current config, press enter to return to menu" input
 }
 
