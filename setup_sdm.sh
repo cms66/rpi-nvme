@@ -1,5 +1,6 @@
 # SDM Drive Imager
 # TODO
+# - Check for NFS shares
 # - Save/read settings from custom.conf
 # - Add option for install location (default = /usr/local)
 # - Add option for setting image directory (defaults to local share for performance)
@@ -8,13 +9,18 @@
 # - Add WiFi settings to custom.conf
 
 instdir="/usr/local/sdm" # Default installation directory (target for custom.conf)
-imgdir="$usrpath/share$pinum/sdm/images" # default image directory
+imgdir="$usrpath/share$pinum/sdm/images" # Default image directory
 # Latest images
 verlatest=$(curl -s https://downloads.raspberrypi.org/operating-systems-categories.json | grep "releaseDate" | head -n 1 | cut -d '"' -f 4)
 url64lite=https://downloads.raspberrypi.org//raspios_lite_arm64/images/raspios_lite_arm64-$verlatest/$verlatest-raspios-bookworm-arm64-lite.img.xz
 url64desk=https://downloads.raspberrypi.org/raspios_arm64/images/raspios_arm64-$verlatest/$verlatest-raspios-bookworm-arm64.img.xz
 url32lite=https://downloads.raspberrypi.com/raspios_lite_armhf/images/raspios_lite_armhf-$verlatest/$verlatest-raspios-bookworm-armhf-lite.img.xz
 url32desk=https://downloads.raspberrypi.com/raspios_armhf/images/raspios_armhf-$verlatest/$verlatest-raspios-bookworm-armhf.img.xz
+
+read_config()
+(
+	cat $instdir/custom.conf
+)
 
 show_sdm_menu()
 {
@@ -44,7 +50,7 @@ install_local()
 imgdirectory = $imgdir\n\
 wificountry = GB\n\
 wifissid = TPL_Picluster\n\
-wifipassword = 81zN3tLAN!WF\n" >> $instdir/custom.conf
+wifipassword = 81zN3tLAN!WF\n" > $instdir/custom.conf
 }
 
 install_server()
@@ -103,6 +109,7 @@ burn_image()
 }
 
 show_sdm_menu
+read_config
 read -p "Select option or x to exit to main menu: " n
 while [ $n != "x" ]; do
 	case $n in
