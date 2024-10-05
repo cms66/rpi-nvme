@@ -1,12 +1,14 @@
 # SDM Drive Imager
 # TODO
-# - Save/read settings from /etc/sdm/custom.conf
+# - Save/read settings from custom.conf
 # - Add option for install location (default = /usr/local)
 # - Add option for setting image directory (defaults to local share for performance)
 # - Add option for version change e.g Bullseye/Bookworm
 # - Add check latest update for current and last versions
+# - Add WiFi settings to custom.conf
 
-imgdir=$usrpath/share$pinum/sdm/images
+instdir="/usr/local/sdm" # Default installation directory (target for custom.conf)
+imgdir=$usrpath/share$pinum/sdm/images # default image directory
 # Latest images
 verlatest=$(curl -s https://downloads.raspberrypi.org/operating-systems-categories.json | grep "releaseDate" | head -n 1 | cut -d '"' -f 4)
 url64lite=https://downloads.raspberrypi.org//raspios_lite_arm64/images/raspios_lite_arm64-$verlatest/$verlatest-raspios-bookworm-arm64-lite.img.xz
@@ -27,14 +29,18 @@ show_sdm_menu()
 
 install_local()
 {
-	# Default setup - install to /usr/local
+	# Default setup - install to /usr/local/sdm
 	#curl -L https://raw.githubusercontent.com/gitbls/sdm/master/EZsdmInstaller | bash
- 	# Create directories for images
- 	mkdir -p $imgdir/current
-  	mkdir -p $imgdir/latest
-   	mkdir -p $imgdir/archive
-    	chown -R $usrname:$usrname $imgdir
- 	download_latest_images
+  	# Create directories for images
+  	read -p "Path to image directory (press enter for default = $usrpath/share$pinum/sdm/images/): " userdir
+	$imgdir=${userdir:="$usrpath/share$pinum/sdm/images/"}
+ 	#mkdir -p $imgdir/current
+  	#mkdir -p $imgdir/latest
+   	#mkdir -p $imgdir/archive
+    	#chown -R $usrname:$usrname $imgdir
+ 	#download_latest_images
+  	# Create custom.conf in installation directory
+   	printf "# Custom configuration\n--------------------\nimgdirectory = $imgdir\n" > $instdir/custom.conf
 }
 
 install_server()
@@ -49,6 +55,11 @@ install_server()
 	fi
 	read -p "SDM - Server install finished, press enter to return to menu" input
 }
+
+check_latest_images()
+(
+
+)
 
 download_latest_images()
 {
@@ -66,7 +77,8 @@ download_latest_images()
 customize_image()
 {
 	# Select image from
- 	# - latest
+ 	# - latest or current
+  	
  	#imgmod=$imgdir/latest/2024-07-04-raspios-bookworm-arm64-lite.img
   	imgmod=$imgdir/latest/2024-07-04-raspios-bookworm-arm64.img
   	# Set target filename + copy to current 
@@ -107,7 +119,7 @@ while [ $n != "x" ]; do
 done
 
 
-#read -p "Path to image directory (press enter for default = $usrpath/share$pinum/sdm/): " userdir
-#imgdir=${userdir:="$usrpath/share$pinum/sdm/"}
+#read -p "Path to image directory (press enter for default = $usrpath/share$pinum/sdm/images/): " userdir
+#imgdir=${userdir:="$usrpath/share$pinum/sdm/images/"}
 #mkdir $imgdir
 
