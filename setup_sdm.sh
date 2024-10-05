@@ -67,9 +67,11 @@ customize_image()
 {
 	# Select image from
  	# - latest
- 	imgmod=$imgdir/latest/2024-07-04-raspios-bookworm-arm64.img
+ 	imgmod=$imgdir/latest/2024-07-04-raspios-bookworm-arm64-lite.img
+  	#imgmod=$imgdir/latest/2024-07-04-raspios-bookworm-arm64.img
   	# Set target filename + copy to current 
-   	imgout=$imgdir/current/2024-07-04_64desk.img
+   	imgout=$imgdir/current/2024-07-04_64lite.img
+    	#imgout=$imgdir/current/2024-07-04_64desk.img
 	cp $imgmod $imgout
 	# - current
  
@@ -81,7 +83,8 @@ customize_image()
 burn_image()
 {
 	# Select image
- 	imgburn=$imgdir/current/2024-07-04_64desk.img
+ 	imgburn=$imgdir/current/2024-07-04_64lite.img
+  	#imgburn=$imgdir/current/2024-07-04_64desk.img
 	# Create list for drive selection
  	# lsblk
  	drvtarget=sda
