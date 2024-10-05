@@ -7,8 +7,8 @@
 # - Add check latest update for current and last versions
 # - Add WiFi settings to custom.conf
 
-instdir="/usr/local/sdm" # Default installation directory (target for custom.conf)
-imgdir="$usrpath/share$pinum/sdm/images" # default image directory
+#instdir="/usr/local/sdm" # Default installation directory (target for custom.conf)
+#imgdir="$usrpath/share$pinum/sdm/images" # default image directory
 # Latest images
 verlatest=$(curl -s https://downloads.raspberrypi.org/operating-systems-categories.json | grep "releaseDate" | head -n 1 | cut -d '"' -f 4)
 url64lite=https://downloads.raspberrypi.org//raspios_lite_arm64/images/raspios_lite_arm64-$verlatest/$verlatest-raspios-bookworm-arm64-lite.img.xz
