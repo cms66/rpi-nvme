@@ -7,8 +7,8 @@
 # - Add check latest update for current and last versions
 # - Add WiFi settings to custom.conf
 
-#instdir="/usr/local/sdm" # Default installation directory (target for custom.conf)
-#imgdir="$usrpath/share$pinum/sdm/images" # default image directory
+instdir="/usr/local/sdm" # Default installation directory (target for custom.conf)
+imgdir="$usrpath/share$pinum/sdm/images" # default image directory
 # Latest images
 verlatest=$(curl -s https://downloads.raspberrypi.org/operating-systems-categories.json | grep "releaseDate" | head -n 1 | cut -d '"' -f 4)
 url64lite=https://downloads.raspberrypi.org//raspios_lite_arm64/images/raspios_lite_arm64-$verlatest/$verlatest-raspios-bookworm-arm64-lite.img.xz
@@ -22,9 +22,10 @@ show_sdm_menu()
 	printf "SDM Drive Imager setup menu \n----------\n\
  1) Install - local \n\
  2) Install - server \n\
- 3) Download latest images \n\
- 4) Customize image \n\
- 5) Burn image \n"
+ 3) Check for latest images \n\ 
+ 4) Download latest images \n\
+ 5) Customize image \n\
+ 6) Burn image \n"
 }
 
 install_local()
