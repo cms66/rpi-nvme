@@ -77,7 +77,7 @@ customize_image()
  
   	# Set username/password
 	read -p "Password for $usrname: " usrpass
-	sdm --customize --plugin user:"adduser=$usrname|password=$usrpass" --plugin L10n:host --plugin disables:piwiz --expand-root --regen-ssh-host-keys --restart $imgout
+	sdm --customize --plugin user:"adduser=$usrname|password=$usrpass" --plugin network:"wifissid=TPL_Picluster|wifipassword=81zN3tLAN!WF|wificountry=GB" --plugin L10n:host --plugin disables:piwiz --extend --expand-root --regen-ssh-host-keys --restart $imgout
 }
 
 burn_image()
@@ -88,7 +88,7 @@ burn_image()
 	# Create list for drive selection
  	# lsblk
  	drvtarget=sda
-	sdm --burn /dev/$drvtarget --hostname pinode-5 --expand-root $imgburn
+	sdm --burn /dev/$drvtarget --hostname pinode-6 --expand-root $imgburn
 }
 
 show_sdm_menu
