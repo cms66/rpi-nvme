@@ -40,7 +40,11 @@ install_local()
     	#chown -R $usrname:$usrname $imgdir
  	#download_latest_images
   	# Create custom.conf in installation directory
-   	printf "# Custom configuration\n--------------------\nimgdirectory = $imgdir\n" > $instdir/custom.conf
+   	printf "# Custom configuration\n--------------------\n\
+imgdirectory = $imgdir\n\
+wificountry = GB\n\
+wifissid = TPL_Picluster\n\
+wifipassword = 81zN3tLAN!WF\n" >> $instdir/custom.conf
 }
 
 install_server()
