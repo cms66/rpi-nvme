@@ -67,28 +67,28 @@ customize_image()
 {
 	# Select image from
  	# - latest
- 	imgmod=$imgdir/latest/2024-07-04-raspios-bookworm-arm64-lite.img
-  	#imgmod=$imgdir/latest/2024-07-04-raspios-bookworm-arm64.img
+ 	#imgmod=$imgdir/latest/2024-07-04-raspios-bookworm-arm64-lite.img
+  	imgmod=$imgdir/latest/2024-07-04-raspios-bookworm-arm64.img
   	# Set target filename + copy to current 
-   	imgout=$imgdir/current/2024-07-04_64lite.img
-    	#imgout=$imgdir/current/2024-07-04_64desk.img
+   	#imgout=$imgdir/current/2024-07-04_64lite.img
+    	imgout=$imgdir/current/2024-07-04_64desk.img
 	cp $imgmod $imgout
 	# - current
  
   	# Set username/password
 	read -p "Password for $usrname: " usrpass
-	sdm --customize --plugin user:"adduser=$usrname|password=$usrpass" --plugin network:"wifissid=TPL_Picluster|wifipassword=81zN3tLAN!WF|wificountry=GB" --plugin L10n:host --plugin disables:piwiz --extend --expand-root --regen-ssh-host-keys --restart $imgout
+	sdm --customize --plugin user:"adduser=$usrname|password=$usrpass" --plugin user:"deluser=pi" --plugin network:"wifissid=TPL_Picluster|wifipassword=81zN3tLAN!WF|wificountry=GB" --plugin L10n:host --plugin disables:piwiz --extend --expand-root --regen-ssh-host-keys --restart $imgout
 }
 
 burn_image()
 {
 	# Select image
- 	imgburn=$imgdir/current/2024-07-04_64lite.img
-  	#imgburn=$imgdir/current/2024-07-04_64desk.img
+ 	#imgburn=$imgdir/current/2024-07-04_64lite.img
+  	imgburn=$imgdir/current/2024-07-04_64desk.img
 	# Create list for drive selection
  	# lsblk
  	drvtarget=sda
-	sdm --burn /dev/$drvtarget --hostname pinode-6 --expand-root $imgburn
+	sdm --burn /dev/$drvtarget --hostname pinode-5 --expand-root $imgburn
 }
 
 show_sdm_menu
