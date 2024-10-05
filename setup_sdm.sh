@@ -57,7 +57,7 @@ install_local()
     	#chown -R $usrname:$usrname $imgdir
  	#download_latest_images
   	# Create custom.conf in installation directory
-   	printf "# Custom configuration\n--------------------\n\
+   	printf "# Custom configuration\n#--------------------\n\
 imgdirectory = $imgdir\n\
 wificountry = GB\n\
 wifissid = TPL_Picluster\n\
@@ -119,8 +119,9 @@ burn_image()
 	sdm --burn /dev/$drvtarget --hostname pinode-5 --expand-root $imgburn
 }
 
-show_sdm_menu
 read_config
+show_sdm_menu
+
 read -p "Select option or x to exit to main menu: " n
 while [ $n != "x" ]; do
 	case $n in
