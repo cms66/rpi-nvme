@@ -56,11 +56,6 @@ install_server()
 	read -p "SDM - Server install finished, press enter to return to menu" input
 }
 
-check_latest_images()
-(
-
-)
-
 download_latest_images()
 {
 	# Replace uncustomized latest images
