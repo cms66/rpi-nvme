@@ -57,7 +57,7 @@ while [ $n != "x" ]; do
 		3) sh $usrpath/.pisetup/rpi-nvme/setup_security.sh;;
 		4) sh $usrpath/.pisetup/rpi-nvme/setup_openmpi.sh;;
 		5) sh $usrpath/.pisetup/rpi-nvme/setup_opencv.sh;;
-    		6) sh $usrpath/.pisetup/rpi-nvme/setup_sdm.sh;;
+    		6) /bin/bash $usrpath/.pisetup/rpi-nvme/setup_sdm.sh;;
     		7) sh $usrpath/.pisetup/rpi-nvme/setup_git_pull_setup.sh;;
     		8) sh $usrpath/.pisetup/rpi-nvme/setup_update_system.sh;;
     		9) sh $usrpath/.pisetup/rpi-nvme/setup_system_summary.sh;;    
