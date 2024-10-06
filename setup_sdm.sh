@@ -32,10 +32,10 @@ read_config()
 	#cat $instdir/custom.conf
  	#readarray -t a < $instdir/custom.conf
   	#awk '{print NR,$0}' $instdir/custom.conf
-	#mapfile -t arrconf < $instdir/custom.conf
-	#for value in "${arrconf[@]}"; do
-    	#	echo "$value"
-	#done 
+	mapfile -t arrconf < $instdir/custom.conf
+	for value in "${arrconf[@]}"; do
+    		echo "$value"
+	done 
 	conf=$instdir/custom.conf
  	#conf=$(grep -v ^\# $instdir/custom.conf)
 	while IFS= read -r line
