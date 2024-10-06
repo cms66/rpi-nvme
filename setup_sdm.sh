@@ -7,6 +7,9 @@
 # - Add option for version change e.g Bullseye/Bookworm
 # - Add check latest update for current and last versions
 
+# Declare an associative array for config
+declare -A arrconf
+
 instdir="/usr/local/sdm" # Default installation directory (target for custom.conf)
 imgdir="$usrpath/share$pinum/sdm/images" # Default image directory
 # Latest images
@@ -26,7 +29,7 @@ handle_error()
 # Set the error handler to be called when an error occurs
 trap handle_error ERR
 
-read_config()
+read_config_old()
 {
 	#cat $instdir/custom.conf
  	#readarray -t a < $instdir/custom.conf
@@ -46,6 +49,24 @@ read_config()
 		echo "Value: [$value]"
 	done < /usr/local/sdm/custom.conf
   	read -p "Current config, press enter to return to menu" input
+}
+read_config()
+{
+	while read line; do
+	  	[ "${line:0:1}" = "#" ] && continue # Ignore comment lines works
+	  	key=${line%% *} # Works
+		value=${line#* }
+		#value=${line#= *}
+		value=${value#= }
+		echo "Key: $key"
+		echo "Value: $value"
+		#echo "Value: ${value#= }"
+		#echo "${line#= }"
+		#arrconf[$key]="$value"
+		arrconf[$key]="$value"
+	done < $instdir/custom.conf
+ 	echo ${arrconf[wifissid]}
+  	read -p "Current config, ${arrconf[wifissid]}" inp
 }
 
 show_sdm_menu()
