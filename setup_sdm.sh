@@ -35,16 +35,14 @@ read_config()
 	#for value in "${arrconf[@]}"; do
     	#	echo "$value"
 	#done 
-	input=$instdir/custom.conf
+	conf=$instdir/custom.conf
 	while IFS= read -r line
 	do
     		key=${line%% *}
     		value=${line#* }
-    		echo .
     		echo "Key: [$key]"
     		echo "Value: [$value]"
-    		echo .
-	done < "$input"
+	done < "$conf"
   	read -p "Current config, press enter to return to menu" input
 }
 
