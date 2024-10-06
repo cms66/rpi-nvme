@@ -59,8 +59,8 @@ read_config()
   		key=${line%% *} # Works
 		#value=${line#* }
 		#value=${line#= *}
-		#value=${value#= }
-  		value=${line#= }
+		value=${value#= }
+  		#value=${line#= }
 		echo "Key: $key"
 		echo "Value: $value"
 		#echo "Value: ${value#= }"
