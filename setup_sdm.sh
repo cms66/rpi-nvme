@@ -8,7 +8,7 @@
 # - Add check latest update for current and last versions
 
 # Declare an associative array for config
-declare -A arrconf
+declare -A -g arrconf
 
 instdir="/usr/local/sdm" # Default installation directory (target for custom.conf)
 imgdir="$usrpath/share$pinum/sdm/images" # Default image directory
