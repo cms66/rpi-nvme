@@ -50,6 +50,7 @@ read_config_old()
 	done < /usr/local/sdm/custom.conf
   	read -p "Current config, press enter to return to menu" input
 }
+
 read_config()
 {
 	while read line; do
@@ -57,7 +58,7 @@ read_config()
   		key=${line%% *} # Works
 		value=${line#* }
 		#value=${line#= *}
-		value=${value#= }
+		#value=${value#= }
 		echo "Key: $key"
 		echo "Value: $value"
 		#echo "Value: ${value#= }"
