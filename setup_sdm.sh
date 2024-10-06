@@ -57,7 +57,7 @@ read_config()
 	while read line; do
   		[ "${line:0:1}" = "#" ] && continue # Ignore comment lines works
   		key=${line%% *} # Works
-		#value=${line#* }
+		value=${line#* }
 		#value=${line#= *}
 		value=${value#= }
   		#value=${line#= }
