@@ -12,7 +12,8 @@ handle_error()
 {
     #echo "An error occurred: $1"
     # Additional error handling code can go here
-    echo "$(caller): ${BASH_COMMAND}\n"
+    #echo "$(caller): ${BASH_COMMAND}\n"
+    read -p "$(caller): ${BASH_COMMAND}" inp
 }
 
 # Set the error handler to be called when an error occurs
