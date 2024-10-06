@@ -41,8 +41,8 @@ read_config()
 	done < $instdir/custom.conf
  	#echo ${arrconf[imgdirectory]}
   	$imgdir=${arrconf[imgdirectory]}
- 	#read -p "Current config, press enter to return to menu" input
-  	ls $imgdir
+   	ls $imgdir
+ 	read -p "Current config, press enter to return to menu" input
 }
 
 show_sdm_menu()
