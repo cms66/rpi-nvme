@@ -44,7 +44,7 @@ read_config()
 		value=${line#* }
 		echo "Key: [$key]"
 		echo "Value: [$value]"
-	done < $conf
+	done < /usr/local/sdm/custom.conf
   	read -p "Current config, press enter to return to menu" input
 }
 
