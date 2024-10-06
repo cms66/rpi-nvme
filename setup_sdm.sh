@@ -36,7 +36,7 @@ read_config()
     	#	echo "$value"
 	#done 
 	#conf=$instdir/custom.conf
- 	conf="/usr/local/sdm/custom.conf"
+ 	#conf="/usr/local/sdm/custom.conf"
  	#conf="$(grep -v ^\# $instdir/custom.conf)"
 	while read line; do
   		[ "${line:0:1}" = "#" ] && continue
