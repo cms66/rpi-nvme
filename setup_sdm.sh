@@ -7,6 +7,16 @@
 # - Add option for version change e.g Bullseye/Bookworm
 # - Add check latest update for current and last versions
 
+# Error handler
+handle_error()
+{
+	echo "Something went wrong!"
+	echo "$(caller): ${BASH_COMMAND}"
+}
+
+# Set the error handler to be called when an error occurs
+trap handle_error ERR
+
 # Declare an associative array for config
 declare -A arrconf
 
@@ -18,16 +28,6 @@ url64lite=https://downloads.raspberrypi.org//raspios_lite_arm64/images/raspios_l
 url64desk=https://downloads.raspberrypi.org/raspios_arm64/images/raspios_arm64-$verlatest/$verlatest-raspios-bookworm-arm64.img.xz
 url32lite=https://downloads.raspberrypi.com/raspios_lite_armhf/images/raspios_lite_armhf-$verlatest/$verlatest-raspios-bookworm-armhf-lite.img.xz
 url32desk=https://downloads.raspberrypi.com/raspios_armhf/images/raspios_armhf-$verlatest/$verlatest-raspios-bookworm-armhf.img.xz
-
-# Error handler
-handle_error()
-{
-	echo "Something went wrong!"
-	echo "$(caller): ${BASH_COMMAND}"
-}
-
-# Set the error handler to be called when an error occurs
-trap handle_error ERR
 
 read_config_old()
 {
