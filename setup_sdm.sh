@@ -37,7 +37,7 @@ read_config()
     	#	echo "$value"
 	#done 
 	#conf=$instdir/custom.conf
- 	conf=$(grep -v ^\# $instdir/custom.conf)
+ 	conf="$(grep -v ^\# $instdir/custom.conf)"
 	while IFS= read -r line
 	do
     		key=${line%% *}
