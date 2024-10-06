@@ -67,6 +67,7 @@ read_config()
 		#arrconf[$key]="$value"
 		arrconf[$key]="$value"
 	done < $instdir/custom.conf
+ 	echo ${arrconf[wifissid]}
  	read -p "Current config, press enter to return to menu" input
 }
 
