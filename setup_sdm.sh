@@ -40,9 +40,13 @@ read_config()
 	while IFS= read -r line
 	do
     		key=${line%% *}
-    		value=${line#* }
-    		echo "Key: [$key]"
-    		echo "Value: [$value]"
+      		if [[ $key == #* ]]
+		then
+    			value=${line#* }
+    			echo "Key: [$key]"
+    			echo "Value: [$value]"
+		fi
+
 	done < "$conf"
   	read -p "Current config, press enter to return to menu" input
 }
