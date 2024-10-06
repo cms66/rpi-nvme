@@ -22,14 +22,14 @@ osarch=$(getconf LONG_BIT)
 export osarch
 
 # Error handler
-handle_error()
-{
-	echo "Something went wrong!"
-	echo "$(caller): ${BASH_COMMAND}"
-}
+#handle_error()
+#{
+#	echo "Something went wrong!"
+#	echo "$(caller): ${BASH_COMMAND}"
+#}
 
 # Set the error handler to be called when an error occurs
-trap handle_error ERR
+#trap handle_error ERR
 
 show_main_menu()
 {
