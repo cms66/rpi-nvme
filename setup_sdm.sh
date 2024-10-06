@@ -12,7 +12,7 @@ handle_error()
 {
     #echo "An error occurred: $1"
     # Additional error handling code can go here
-    echo "$(caller): ${BASH_COMMAND}"
+    echo "$(caller): ${BASH_COMMAND}\n"
 }
 
 # Set the error handler to be called when an error occurs
@@ -36,8 +36,8 @@ read_config()
 	#for value in "${arrconf[@]}"; do
     	#	echo "$value"
 	#done 
-	#conf=$instdir/custom.conf
- 	conf=$(grep -v ^\# $instdir/custom.conf)
+	conf=$instdir/custom.conf
+ 	#conf=$(grep -v ^\# $instdir/custom.conf)
 	while IFS= read -r line
 	do
     		key=${line%% *}
