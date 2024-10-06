@@ -53,11 +53,11 @@ read_config_old()
 read_config()
 {
 	while read line; do
-	  	[ "${line:0:1}" = "#" ] && continue # Ignore comment lines works
-	  	key=${line%% *} # Works
+  		[ "${line:0:1}" = "#" ] && continue # Ignore comment lines works
+  		key=${line%% *} # Works
 		value=${line#* }
 		#value=${line#= *}
-		#value=${value#= }
+		value=${value#= }
 		echo "Key: $key"
 		echo "Value: $value"
 		#echo "Value: ${value#= }"
@@ -65,8 +65,6 @@ read_config()
 		#arrconf[$key]="$value"
 		arrconf[$key]="$value"
 	done < $instdir/custom.conf
- 	echo ${arrconf[wifissid]}
-  	read -p "Current config, ${arrconf[wifissid]}" inp
 }
 
 show_sdm_menu()
