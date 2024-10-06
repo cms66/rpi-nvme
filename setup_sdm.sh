@@ -37,14 +37,15 @@ read_config()
     	#	echo "$value"
 	#done 
 	#conf=$instdir/custom.conf
- 	conf=grep -v ^\# $instdir/custom.conf
+ 	#grep -v ^\# $instdir/custom.conf
 	while IFS= read -r line
 	do
     		key=${line%% *}
     		value=${line#* }
     		echo "Key: [$key]"
     		echo "Value: [$value]"
-	done < "$conf"
+	#done < "$conf"
+ 	done < $(grep -v ^\# $instdir/custom.conf)
   	read -p "Current config, press enter to return to menu" input
 }
 
