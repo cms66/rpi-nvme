@@ -10,13 +10,13 @@
 # Error handler
 handle_error()
 {
-    echo "An error occurred: $1"
+    #echo "An error occurred: $1"
     # Additional error handling code can go here
     echo "$(caller): ${BASH_COMMAND}"
 }
 
 # Set the error handler to be called when an error occurs
-trap 'handle_error ERR
+trap handle_error ERR
 
 instdir="/usr/local/sdm" # Default installation directory (target for custom.conf)
 imgdir="$usrpath/share$pinum/sdm/images" # Default image directory
