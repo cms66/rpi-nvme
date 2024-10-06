@@ -8,7 +8,7 @@
 # - Add check latest update for current and last versions
 
 # Error handler
-function handle_error
+handle_error()
 {
     #echo "An error occurred: $1"
     # Additional error handling code can go here
