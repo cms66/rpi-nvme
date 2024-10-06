@@ -35,7 +35,7 @@ read_config()
 	#for value in "${arrconf[@]}"; do
     	#	echo "$value"
 	#done 
-	conf=$instdir/custom.conf
+	#conf=$instdir/custom.conf
  	conf="/usr/local/sdm/custom.conf"
  	#conf="$(grep -v ^\# $instdir/custom.conf)"
 	while read line; do
