@@ -20,8 +20,8 @@ git clone https://github.com/cms66/$repo.git
 chown -R $usrname:$usrname /home/$usrname/.pisetup
 
 # Add bash alias for setup and test menu
-echo "alias mysetup=\"sudo sh ~/.pisetup/$repo/setup_menu.sh\"" >> /home/$usrname/.bashrc
-echo "alias mytest=\"sudo sh ~/.pisetup/$repo/test_menu.sh\"" >> /home/$usrname/.bashrc
+echo "alias mysetup=\"sudo /bin/bash ~/.pisetup/$repo/setup_menu.sh\"" >> /home/$usrname/.bashrc
+echo "alias mytest=\"sudo /bin/bash ~/.pisetup/$repo/test_menu.sh\"" >> /home/$usrname/.bashrc
 
 # - Create python Virtual Environment (with access to system level packages) and bash alias for activation
 python -m venv --system-site-packages /home/$usrname/.venv
