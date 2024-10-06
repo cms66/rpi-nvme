@@ -40,7 +40,7 @@ read_config()
 	while IFS= read -r line
 	do
     		key=${line%% *}
-      		if [[ [$key] == #* ]]
+      		if [ [$key] == #* ]
 		then
     			value=${line#* }
     			echo "Key: [$key]"
