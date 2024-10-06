@@ -28,10 +28,24 @@ url32desk=https://downloads.raspberrypi.com/raspios_armhf/images/raspios_armhf-$
 
 read_config()
 {
-	cat $instdir/custom.conf
+	#cat $instdir/custom.conf
  	#readarray -t a < $instdir/custom.conf
-  	awk '{print NR,$0}' $instdir/custom.conf 
- 	read -p "Current config, press enter to return to menu" input
+  	#awk '{print NR,$0}' $instdir/custom.conf
+	#mapfile -t arrconf < $instdir/custom.conf
+	#for value in "${arrconf[@]}"; do
+    	#	echo "$value"
+	#done 
+	input=$instdir/custom.conf
+	while IFS= read -r line
+	do
+    		key=${line%% *}
+    		value=${line#* }
+    		echo .
+    		echo "Key: [$key]"
+    		echo "Value: [$value]"
+    		echo .
+	done < "$input"
+  	read -p "Current config, press enter to return to menu" input
 }
 
 show_sdm_menu()
