@@ -30,42 +30,13 @@ url64desk=https://downloads.raspberrypi.org/raspios_arm64/images/raspios_arm64-$
 url32lite=https://downloads.raspberrypi.com/raspios_lite_armhf/images/raspios_lite_armhf-$verlatest/$verlatest-raspios-bookworm-armhf-lite.img.xz
 url32desk=https://downloads.raspberrypi.com/raspios_armhf/images/raspios_armhf-$verlatest/$verlatest-raspios-bookworm-armhf.img.xz
 
-read_config_old()
-{
-	#cat $instdir/custom.conf
- 	#readarray -t a < $instdir/custom.conf
-  	#awk '{print NR,$0}' $instdir/custom.conf
-	#mapfile -t arrconf < $instdir/custom.conf
-	#for value in "${arrconf[@]}"; do
-    	#	echo "$value"
-	#done 
-	#conf=$instdir/custom.conf
- 	#conf="/usr/local/sdm/custom.conf"
- 	#conf="$(grep -v ^\# $instdir/custom.conf)"
-	while read line; do
-  		[ "${line:0:1}" = "#" ] && continue
-  		key=${line%% *}
-		value=${line#* }
-		echo "Key: [$key]"
-		echo "Value: [$value]"
-	done < /usr/local/sdm/custom.conf
-  	read -p "Current config, press enter to return to menu" input
-}
-
 read_config()
 {
 	while read line; do
   		[ "${line:0:1}" = "#" ] && continue # Ignore comment lines works
   		key=${line%% *} # Works
-		value=${line#* }
-		#value=${line#= *}
-		value=${value#= }
-  		#value=${line#= }
-		echo "Key: $key"
-		echo "Value: $value"
-		#echo "Value: ${value#= }"
-		#echo "${line#= }"
-		#arrconf[$key]="$value"
+		value=${line#* } # TODO
+		value=${value#= } # TODO
 		arrconf[$key]="$value"
 	done < $instdir/custom.conf
  	echo ${arrconf[wifissid]}
