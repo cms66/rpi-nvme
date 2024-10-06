@@ -30,7 +30,7 @@ handle_error()
 }
 
 # Set the error handler to be called when an error occurs
-trap handle_error ERR
+#trap handle_error ERR
 
 show_main_menu()
 {
