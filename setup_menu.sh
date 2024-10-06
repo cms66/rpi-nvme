@@ -24,9 +24,8 @@ export osarch
 # Error handler
 handle_error()
 {
-    #echo "An error occurred: $1"
-    # Additional error handling code can go here
-    read -p "$(caller): ${BASH_COMMAND}" inp
+	echo "Something went wrong!"
+	echo "$(caller): ${BASH_COMMAND}"
 }
 
 # Set the error handler to be called when an error occurs
