@@ -39,9 +39,10 @@ read_config()
 		value=${value#= } # TODO
 		arrconf[$key]="$value"
 	done < $instdir/custom.conf
- 	#echo ${arrconf[imgdirectory]}
-  	$imgdir=${arrconf[imgdirectory]}
-   	ls $imgdir
+ 	echo ${arrconf[imgdirectory]}
+   	echo $(arrconf[wifissid]}
+  	#$imgdir=${arrconf[imgdirectory]}
+   	#ls $imgdir
  	read -p "Current config, press enter to return to menu" input
 }
 
