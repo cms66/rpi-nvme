@@ -39,8 +39,10 @@ read_config()
 		value=${value#= } # TODO
 		arrconf[$key]="$value"
 	done < $instdir/custom.conf
- 	echo ${arrconf[wifissid]}
- 	read -p "Current config, press enter to return to menu" input
+ 	#echo ${arrconf[imgdirectory]}
+  	$imgdir=${arrconf[imgdirectory]}
+ 	#read -p "Current config, press enter to return to menu" input
+  	ls $imgdir
 }
 
 show_sdm_menu()
@@ -146,8 +148,4 @@ while [ $n != "x" ]; do
 	read -p "Select option or x to exit to main menu: " n
 done
 
-
-#read -p "Path to image directory (press enter for default = $usrpath/share$pinum/sdm/images/): " userdir
-#imgdir=${userdir:="$usrpath/share$pinum/sdm/images/"}
-#mkdir $imgdir
 
