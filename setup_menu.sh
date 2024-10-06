@@ -21,6 +21,17 @@ export pimem
 osarch=$(getconf LONG_BIT)
 export osarch
 
+# Error handler
+handle_error()
+{
+    #echo "An error occurred: $1"
+    # Additional error handling code can go here
+    echo "$(caller): ${BASH_COMMAND}\n"
+}
+
+# Set the error handler to be called when an error occurs
+trap handle_error ERR
+
 show_main_menu()
 {
 	clear
