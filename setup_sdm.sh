@@ -11,7 +11,8 @@
 handle_error()
 {
 	echo "Something went wrong!"
-	echo "$(caller): ${BASH_COMMAND}"
+	#echo "$(caller): ${BASH_COMMAND}"
+ 	read -p "Error: $(caller): ${BASH_COMMAND}" inp
 }
 
 # Set the error handler to be called when an error occurs
