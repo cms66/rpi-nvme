@@ -20,8 +20,8 @@ git clone https://github.com/cms66/$repo.git
 chown -R $usrname:$usrname /home/$usrname/.pisetup
 
 # Add bash alias for setup and test menu
-echo "alias mysetup=\"sudo /bin/bash ~/.pisetup/$repo/setup_menu.sh\"" >> /home/$usrname/.bashrc
-echo "alias mytest=\"sudo /bin/bash ~/.pisetup/$repo/test_menu.sh\"" >> /home/$usrname/.bashrc
+echo "alias mysetup=\"sudo sh ~/.pisetup/$repo/setup_menu.sh\"" >> /home/$usrname/.bashrc
+echo "alias mytest=\"sudo sh ~/.pisetup/$repo/test_menu.sh\"" >> /home/$usrname/.bashrc
 
 # - Create python Virtual Environment (with access to system level packages) and bash alias for activation
 python -m venv --system-site-packages /home/$usrname/.venv
@@ -58,11 +58,20 @@ sed -i "s/rootwait/rootwait ipv6.disable=1/g" /boot/firmware/cmdline.txt
 sed -i 's/#PermitRootLogin\ prohibit-password/PermitRootLogin\ no/g' /etc/ssh/sshd_config
 
 # Set default shell to bash
-echo "dash dash/sh boolean false" | debconf-set-selections
-DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
+dpkg-divert --remove --no-rename /usr/share/man/man1/sh.1.gz
+dpkg-divert --remove --no-rename /bin/sh
+ln -sf bash.1.gz /usr/share/man/man1/sh.1.gz
+ln -sf bash /bin/sh
+dpkg-divert --add --local --no-rename /usr/share/man/man1/sh.1.gz
+dpkg-divert --add --local --no-rename /bin/sh
 
-# Update firmware
-#rpi-eeprom-update -a
+# Update firmware - Only applies to model 4/5
+updfirm=$(rpi-eeprom-update | grep "Bootloader"
+read -p "Firmware update available, press y to update now or any other key to continue: " input
+if [ X$input = X"y" ]
+then
+	rpi-eeprom-update -a
+fi
 
 # Reboot or Poweroff (if static IP setup needed on router)
 read -p "Finished base setup, press p to poweroff (if setting a static IP on router) or any other key to reboot, then login as $usrname: " input
