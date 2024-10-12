@@ -62,13 +62,11 @@ cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 read -rp "Allow remote acces (y/n): " inp </dev/tty
 if [[ X$inp = X"n" ]]
 then
-        echo "Local"
  	yes | sudo ufw allow from $localnet to any port ssh
 else
-        echo "Remote"
  	yes | sudo ufw allow ssh
 fi
-ufw logging on
+yes | sudo ufw logging on
 yes | sudo ufw enable
 
 # Networking
@@ -82,7 +80,7 @@ sed -i 's/#PermitRootLogin\ prohibit-password/PermitRootLogin\ no/g' /etc/ssh/ss
 
 # Update firmware - Only applies to model 4/5
 if [ $pimodelnum = "4" ] || [ $pimodelnum = "5" ]; then # Model has firmware
-	updfirm=$(sudo rpi-eeprom-update | grep BOOTLOADER | cut -d ":" -f 2)
+	updfirm=$(sudo rpi-eeprom-update | grep BOOTLOADER | cut -d ":" -f 2) # Check for updates
  	if [ $updfirm != " up to date" ]; then # Update available
   		read -p "Firmware update available, press y to update now or any other key to continue: " input
     		if [ X$input = X"y" ]; then # Apply firmware update
@@ -94,13 +92,10 @@ fi
 
 # Reboot or Poweroff (if static IP setup needed on router)
 read -rp "Finished base setup press p to poweroff or any other key to reboot: " inp </dev/tty
-echo "Poweroff = $inp"
 if [ X$inp = X"p" ]
 then
-        echo "poweroff"
 	poweroff
 else
-        echo "reboot"
 	reboot
 fi
 
