@@ -3,6 +3,7 @@ clear
 strtitle="System summary ($(hostname))"
 echo $strtitle;printf -- '=%.0s' $(seq 1 ${#strtitle})
 printf "\nRepo: $repo \n"
+printf "\nRepo - script: $reposcr \n"
 printf "\nModel: $pimodel \n"
 printf "Revision: $pirev \n"
 printf "Architecture: $osarch \n"
