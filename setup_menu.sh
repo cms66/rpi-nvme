@@ -33,7 +33,7 @@ osarch=$(getconf LONG_BIT)
 export osarch
 repo="rpi-nvme"
 export repo
-reposcr=$(pwd)
+reposcr=$(pwd -P)
 export reposcr
 
 show_main_menu()
