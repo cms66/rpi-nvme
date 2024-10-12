@@ -89,7 +89,7 @@ if [ $pimodelnum = "4" ] || [ $pimodelnum = "5" ]; then # Model has firmware
 fi
 
 # Reboot or Poweroff (if static IP setup needed on router)
-read -p "Finished base setup, press p to poweroff (if setting a static IP on router) or any other key to reboot, then login as $usrname: " input
+read -rp "Finished base setup, press p to poweroff (if setting a static IP on router) or any other key to reboot, then login as $usrname: " input
 if [ X$input = X"p" ]
 then
 	poweroff
