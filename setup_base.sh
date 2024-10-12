@@ -60,7 +60,9 @@ pimodelnum=$(cat /sys/firmware/devicetree/base/model | cut -d " " -f 3)
 # Configure firewall (ufw)
 # Allow SSH from local subnet only, unless remote access needed
 read -rp "Allow remote acces" inp
+
 echo "Remote = $inp"
+
 if [ X$inp = X"n" ]
 then
         echo "Local"
@@ -94,7 +96,9 @@ fi
 
 # Reboot or Poweroff (if static IP setup needed on router)
 read -rp "Finished base setup press p to poweroff or any other key to reboot" inp
+
 echo "Poweroff = $inp"
+
 if [ X$inp = X"p" ]
 then
         echo "poweroff"
