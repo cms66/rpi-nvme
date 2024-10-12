@@ -66,7 +66,7 @@ else
 	echo "y" | sudo ufw allow ssh
 fi
 ufw logging on
-ufw enable
+echo "y" | sudo ufw enable
 
 # Networking
 echo "127.0.0.1   $piname.local $piname" >> /etc/hosts
