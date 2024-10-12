@@ -1,5 +1,4 @@
 # Setup main menu
-# Check/Run other setup scripts
 # TODO
 # - 
 
