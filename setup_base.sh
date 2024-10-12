@@ -61,12 +61,12 @@ read -rp "Allow remote (outside home network) ssh access (y/n): " inp
 #inp="n"
 if [ X$inp = X"n" ]
 then
-	echo "y" | sudo ufw allow from $localnet to any port ssh
+	yes | sudo ufw allow from $localnet to any port ssh
 else
-	echo "y" | sudo ufw allow ssh
+	yes | sudo ufw allow ssh
 fi
 ufw logging on
-echo "y" | sudo ufw enable
+yes | sudo ufw enable
 
 # Networking
 echo "127.0.0.1   $piname.local $piname" >> /etc/hosts
