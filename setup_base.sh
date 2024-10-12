@@ -59,8 +59,6 @@ pimodelnum=$(cat /sys/firmware/devicetree/base/model | cut -d " " -f 3)
 # Allow SSH from local subnet only, unless remote access needed
 read -rp "Allow remote (outside home network) ssh access (y/n):\n" inp
 
-# inp="y"
-
 if [ X$inp = X"n" ]
 then
 	yes | sudo ufw allow from $localnet to any port ssh
@@ -92,6 +90,7 @@ fi
 
 # Reboot or Poweroff (if static IP setup needed on router)
 read -rp "Finished base setup, press p to poweroff (if setting a static IP on router) or any other key to reboot, then login as $usrname\n" input
+
 if [ X$input = X"p" ]
 then
 	poweroff
