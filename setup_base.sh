@@ -63,7 +63,7 @@ read -rp "Allow remote acces" inp
 
 echo "Remote = $inp"
 
-if [ X$inp = X"n" ]
+if [[ X$inp = X"n" ]]
 then
         echo "Local"
 	yes | sudo ufw allow from $localnet to any port ssh
