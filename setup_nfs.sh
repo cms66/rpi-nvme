@@ -51,6 +51,7 @@ add_remote_mount()
 }
 
 show_nfs_menu
+breakit
 read -p "Select option or x to exit to main menu: " n
 while [ $n != "x" ]; do
 	case $n in
