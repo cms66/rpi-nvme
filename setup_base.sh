@@ -59,7 +59,7 @@ cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 
 # Configure firewall (ufw)
 # Allow SSH from local subnet only, unless remote access needed
-read -rp "Allow remote acces" inp </dev/tty
+read -rp "Allow remote acces (y/n): " inp </dev/tty
 if [[ X$inp = X"n" ]]
 then
         echo "Local"
@@ -93,7 +93,7 @@ fi
 
 
 # Reboot or Poweroff (if static IP setup needed on router)
-read -rp "Finished base setup press p to poweroff or any other key to reboot" inp </dev/tty
+read -rp "Finished base setup press p to poweroff or any other key to reboot: " inp </dev/tty
 echo "Poweroff = $inp"
 if [ X$inp = X"p" ]
 then
