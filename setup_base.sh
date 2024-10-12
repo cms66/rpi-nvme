@@ -64,13 +64,13 @@ echo "Remote = $inp"
 if [[ X$inp = X"n" ]]
 then
         echo "Local"
- 	# yes | sudo ufw allow from $localnet to any port ssh
+ 	yes | sudo ufw allow from $localnet to any port ssh
 else
         echo "Remote"
- 	# yes | sudo ufw allow ssh
+ 	yes | sudo ufw allow ssh
 fi
-# ufw logging on
-# yes | sudo ufw enable
+ufw logging on
+yes | sudo ufw enable
 
 # Networking
 echo "127.0.0.1   $piname.local $piname" >> /etc/hosts
@@ -99,7 +99,9 @@ echo "Poweroff = $inp"
 if [ X$inp = X"p" ]
 then
         echo "poweroff"
+	poweroff
 else
         echo "reboot"
+	reboot
 fi
 
