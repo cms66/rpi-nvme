@@ -59,20 +59,20 @@ pimodelnum=$(cat /sys/firmware/devicetree/base/model | cut -d " " -f 3)
 
 # Configure firewall (ufw)
 # Allow SSH from local subnet only, unless remote access needed
-read -rp "Allow remote acces" inp
+#read -rp "Allow remote acces" inp
 
-echo "Remote = $inp"
+#echo "Remote = $inp"
 
-if [[ X$inp = X"n" ]]
-then
-        echo "Local"
-	yes | sudo ufw allow from $localnet to any port ssh
-else
-        echo "Remote"
-	yes | sudo ufw allow ssh
-fi
-ufw logging on
-yes | sudo ufw enable
+#if [[ X$inp = X"n" ]]
+#then
+#        echo "Local"
+#	yes | sudo ufw allow from $localnet to any port ssh
+#else
+#        echo "Remote"
+#	yes | sudo ufw allow ssh
+#fi
+#ufw logging on
+#yes | sudo ufw enable
 
 # Networking
 echo "127.0.0.1   $piname.local $piname" >> /etc/hosts
