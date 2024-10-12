@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # First boot - Base setup
 # Assumes
 # - rpi imager or sdm used to configure user/hostname
