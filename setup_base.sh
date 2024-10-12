@@ -57,8 +57,7 @@ pimodelnum=$(cat /sys/firmware/devicetree/base/model | cut -d " " -f 3)
 
 # Configure firewall (ufw)
 # Allow SSH from local subnet only, unless remote access needed
-# read -rp "Allow remote (outside home network) ssh access (y/n): " inp
-inp="n"
+read -rp "Allow remote (outside home network) ssh access (y/n):\n" inp
 if [ X$inp = X"n" ]
 then
 	yes | sudo ufw allow from $localnet to any port ssh
@@ -89,8 +88,8 @@ if [ $pimodelnum = "4" ] || [ $pimodelnum = "5" ]; then # Model has firmware
 fi
 
 # Reboot or Poweroff (if static IP setup needed on router)
-read -rp "Press p to poweroff or any other key to reboot: " inp
-if [ X$inp = X"p" ]
+read -rp "Finished base setup, press p to poweroff (if setting a static IP on router) or any other key to reboot, then login as $usrname\n" input
+if [ X$input = X"p" ]
 then
 	poweroff
 else
