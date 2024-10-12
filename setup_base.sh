@@ -1,8 +1,9 @@
-#!/usr/bin/env bash
 # First boot - Base setup
 # Assumes
 # - rpi imager or sdm used to configure user/hostname
 # sudo run this script as created user
+
+set -e
 
 # Set default shell to bash
 #dpkg-divert --remove --no-rename /usr/share/man/man1/sh.1.gz
