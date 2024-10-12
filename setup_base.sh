@@ -93,7 +93,7 @@ read -rp "Finished base setup, press p to poweroff (if setting a static IP on ro
 
 if [ X$inp = X"p" ]
 then
-	poweroff
+	echo "poweroff"
 else
-	reboot
+	echo "reboot"
 fi
