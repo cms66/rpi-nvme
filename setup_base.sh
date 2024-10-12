@@ -67,6 +67,7 @@ else
 fi
 ufw logging on
 yes | sudo ufw enable
+printf "Remote = $inp"
 
 # Networking
 echo "127.0.0.1   $piname.local $piname" >> /etc/hosts
@@ -90,6 +91,7 @@ fi
 
 # Reboot or Poweroff (if static IP setup needed on router)
 read -rp "Finished base setup, press p to poweroff (if setting a static IP on router) or any other key to reboot, then login as $usrname\n" inp
+printf "Poweroff = $inp"
 
 if [ X$inp = X"p" ]
 then
