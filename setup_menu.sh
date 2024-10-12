@@ -3,6 +3,18 @@
 # TODO
 # - 
 
+set -e
+
+# Error handler
+handle_error()
+{
+	echo "Something went wrong!"
+	echo "$(caller): ${BASH_COMMAND}"
+}
+
+# Set the error handler to be called when an error occurs
+trap handle_error ERR
+
 # create/export variables for other scripts
 usrname=$(logname)
 export usrname
@@ -20,16 +32,8 @@ pimem=$(free -mt)
 export pimem
 osarch=$(getconf LONG_BIT)
 export osarch
-
-# Error handler
-#handle_error()
-#{
-#	echo "Something went wrong!"
-#	echo "$(caller): ${BASH_COMMAND}"
-#}
-
-# Set the error handler to be called when an error occurs
-#trap handle_error ERR
+repo="rpi-nvme"
+export repo
 
 show_main_menu()
 {
@@ -52,15 +56,15 @@ read -p "Select option or x to exit: " n
 # Run as root so using absolute path 
 while [ $n != "x" ]; do
 	case $n in
-		1) sh $usrpath/.pisetup/rpi-nvme/setup_hardware.sh;;
-		2) sh $usrpath/.pisetup/rpi-nvme/setup_nfs.sh;;
-		3) sh $usrpath/.pisetup/rpi-nvme/setup_security.sh;;
-		4) sh $usrpath/.pisetup/rpi-nvme/setup_openmpi.sh;;
-		5) sh $usrpath/.pisetup/rpi-nvme/setup_opencv.sh;;
-    		6) /bin/bash $usrpath/.pisetup/rpi-nvme/setup_sdm.sh;;
-    		7) sh $usrpath/.pisetup/rpi-nvme/setup_git_pull_setup.sh;;
-    		8) sh $usrpath/.pisetup/rpi-nvme/setup_update_system.sh;;
-    		9) sh $usrpath/.pisetup/rpi-nvme/setup_system_summary.sh;;    
+		1) sh $usrpath/.pisetup/$repo/setup_hardware.sh;;
+		2) sh $usrpath/.pisetup/$repo/setup_nfs.sh;;
+		3) sh $usrpath/.pisetup/$repo/setup_security.sh;;
+		4) sh $usrpath/.pisetup/$repo/setup_openmpi.sh;;
+		5) sh $usrpath/.pisetup/$repo/setup_opencv.sh;;
+    		6) sh $usrpath/.pisetup/$repo/setup_sdm.sh;;
+    		7) sh $usrpath/.pisetup/$repo/setup_git_pull_setup.sh;;
+    		8) sh $usrpath/.pisetup/$repo/setup_update_system.sh;;
+    		9) sh $usrpath/.pisetup/$repo/setup_system_summary.sh;;    
 		*) read -p "invalid option - press enter to return to menu" errkey;;
 	esac
 	show_main_menu
