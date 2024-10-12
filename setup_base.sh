@@ -57,7 +57,8 @@ pimodelnum=$(cat /sys/firmware/devicetree/base/model | cut -d " " -f 3)
 
 # Configure firewall (ufw)
 # Allow SSH from local subnet only, unless remote access needed
-read -p "Allow remote (outside home network) ssh access (y/n): " input
+#read -p "Allow remote (outside home network) ssh access (y/n): " input # TODO
+input="n"
 if [ X$input = X"n" ]
 then
 	ufw allow from $localnet to any port ssh
