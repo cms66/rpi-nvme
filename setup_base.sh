@@ -11,6 +11,16 @@ ln -sf bash /bin/sh
 dpkg-divert --add --local --no-rename /usr/share/man/man1/sh.1.gz
 dpkg-divert --add --local --no-rename /bin/sh
 
+# Error handler
+handle_error()
+{
+	echo "Something went wrong!"
+	echo "$(caller): ${BASH_COMMAND}"
+}
+
+# Set the error handler to be called when an error occurs
+trap handle_error ERR
+
 usrname=$(logname)
 piname=$(hostname)
 localnet=$(ip route | awk '/proto/ && !/default/ {print $1}')
