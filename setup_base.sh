@@ -57,8 +57,8 @@ cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 
 # Configure firewall (ufw)
 # Allow SSH from local subnet only, unless remote access needed
-read -p "Allow remote (outside home network) ssh access (y/n)?" input
-if [ X$input = X"n" ]
+read -p "Allow remote (outside home network) ssh access (y/n)? " input
+if [[ X$input = X"n" ]]
 then
 	ufw allow from $localnet to any port ssh
 else
