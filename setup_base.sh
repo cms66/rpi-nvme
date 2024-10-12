@@ -3,10 +3,19 @@
 # - rpi imager or sdm used to configure user/hostname
 # sudo run this script as created user
 
+# Set default shell to bash
+dpkg-divert --remove --no-rename /usr/share/man/man1/sh.1.gz
+dpkg-divert --remove --no-rename /bin/sh
+ln -sf bash.1.gz /usr/share/man/man1/sh.1.gz
+ln -sf bash /bin/sh
+dpkg-divert --add --local --no-rename /usr/share/man/man1/sh.1.gz
+dpkg-divert --add --local --no-rename /bin/sh
+
 usrname=$(logname)
 piname=$(hostname)
 localnet=$(ip route | awk '/proto/ && !/default/ {print $1}')
 repo="rpi-nvme"
+pimodelnum=$(cat /sys/firmware/devicetree/base/model | cut -d " " -f 3)
 
 # Install/update software
 apt-get -y update
@@ -57,20 +66,15 @@ sed -i "s/rootwait/rootwait ipv6.disable=1/g" /boot/firmware/cmdline.txt
 # Disable root SSH login
 sed -i 's/#PermitRootLogin\ prohibit-password/PermitRootLogin\ no/g' /etc/ssh/sshd_config
 
-# Set default shell to bash
-dpkg-divert --remove --no-rename /usr/share/man/man1/sh.1.gz
-dpkg-divert --remove --no-rename /bin/sh
-ln -sf bash.1.gz /usr/share/man/man1/sh.1.gz
-ln -sf bash /bin/sh
-dpkg-divert --add --local --no-rename /usr/share/man/man1/sh.1.gz
-dpkg-divert --add --local --no-rename /bin/sh
-
 # Update firmware - Only applies to model 4/5
-updfirm=$(rpi-eeprom-update | grep "Bootloader"
-read -p "Firmware update available, press y to update now or any other key to continue: " input
-if [ X$input = X"y" ]
-then
-	rpi-eeprom-update -a
+if [ $pimodelnum = "4" ] || [ $pimodelnum = "5" ]; then # Model has firmware
+	updfirm=$(sudo rpi-eeprom-update | grep BOOTLOADER | cut -d ":" -f 2)
+ 	if [ $updfirm != " up to date" ]; then # Update available
+  		read -p "Firmware update available, press y to update now or any other key to continue: " input
+    		if [ X$input = X"y" ]; then # Apply firmware update
+			rpi-eeprom-update -a
+   		fi
+     	fi
 fi
 
 # Reboot or Poweroff (if static IP setup needed on router)
