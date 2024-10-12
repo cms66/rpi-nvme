@@ -60,12 +60,12 @@ pimodelnum=$(cat /sys/firmware/devicetree/base/model | cut -d " " -f 3)
 read -rp "Allow remote (outside home network) ssh access (y/n): " input # TODO
 if [ X$input = X"n" ]
 then
-	ufw allow from $localnet to any port ssh
+	ufw --force allow from $localnet to any port ssh
 else
-	ufw allow ssh
+	ufw --force allow ssh
 fi
-ufw logging on
-ufw enable
+ufw --force logging on
+ufw --force enable enable
 
 # Networking
 echo "127.0.0.1   $piname.local $piname" >> /etc/hosts
