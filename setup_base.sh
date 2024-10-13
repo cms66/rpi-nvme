@@ -2,6 +2,8 @@
 # Assumes
 # - rpi imager or sdm used to configure user/hostname
 # sudo run this script as created user
+# TODO
+# - Get git repo/branch from curl request url 
 
 set -e
 
@@ -26,6 +28,7 @@ usrname=$(logname)
 piname=$(hostname)
 localnet=$(ip route | awk '/proto/ && !/default/ {print $1}')
 repo="rpi-nvme"
+repobranch="main"
 pimodelnum=$(cat /sys/firmware/devicetree/base/model | cut -d " " -f 3)
 
 # Install/update software
@@ -37,6 +40,8 @@ apt-get -y install python3-dev gcc g++ gfortran libraspberrypi-dev libomp-dev gi
 mkdir /home/$usrname/.pisetup
 cd /home/$usrname/.pisetup
 git clone https://github.com/cms66/$repo.git
+printf "# Custom configuration\n#--------------------\n\
+repo = $repo\n" > /home/$usrname/.pisetup/custom.conf
 chown -R $usrname:$usrname /home/$usrname/.pisetup
 
 # Add bash alias for setup and test menu
