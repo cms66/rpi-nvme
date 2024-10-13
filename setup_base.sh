@@ -41,7 +41,8 @@ mkdir /home/$usrname/.pisetup
 cd /home/$usrname/.pisetup
 git clone https://github.com/cms66/$repo.git
 printf "# Custom configuration\n#--------------------\n\
-repo = $repo\n" > /home/$usrname/.pisetup/custom.conf
+repo = $repo\n\
+repobranch = $repobranch\n" > /home/$usrname/.pisetup/custom.conf
 chown -R $usrname:$usrname /home/$usrname/.pisetup
 
 # Add bash alias for setup and test menu
