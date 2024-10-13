@@ -2,7 +2,7 @@
 # TODO
 # - 
 
-# set -e
+set -a
 
 # Error handler
 handle_error()
