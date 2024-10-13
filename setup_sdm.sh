@@ -46,7 +46,10 @@ install_local()
 	# Default setup - install to /usr/local/sdm
 	curl -L https://raw.githubusercontent.com/gitbls/sdm/master/EZsdmInstaller | bash
   	# Create directories for images
-   	# Assumes NFS share already created
+   	# Assumes
+    	# - NFS share already created
+     	# - 
+    
   	read -rp "Path to image directory (press enter for default = $usrpath/share$pinum/sdm/images/): " userdir </dev/tty
 	$imgdir=${userdir:="$usrpath/share$pinum/sdm/images/"}
  	mkdir -p $imgdir/current
@@ -55,11 +58,9 @@ install_local()
     	chown -R $usrname:$usrname $imgdir
  	#download_latest_images
   	# Create custom.conf in installation directory
-   	printf "# Custom configuration\n#--------------------\n\
+   	printf "# Custom configuration\n# --------------------\n\
 imgdirectory = $imgdir\n\
-wificountry = GB\n\
-wifissid = TPL_Picluster\n\
-wifipassword = 81zN3tLAN!WF\n" > $instdir/custom.conf
+# End of custom config\n" > $instdir/custom.conf
 }
 
 install_server()
