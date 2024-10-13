@@ -3,7 +3,8 @@
 # - rpi imager or sdm used to configure user/hostname
 # sudo run this script as created user
 # TODO
-# - Get git repo/branch from curl request url 
+# - Get git repo/branch from curl request url
+# - 
 
 set -e
 
@@ -88,7 +89,7 @@ sed -i 's/#PermitRootLogin\ prohibit-password/PermitRootLogin\ no/g' /etc/ssh/ss
 # Update firmware - Only applies to model 4/5
 if [ $pimodelnum = "4" ] || [ $pimodelnum = "5" ]; then # Model has firmware
 	updfirm=$(sudo rpi-eeprom-update | grep BOOTLOADER | cut -d ":" -f 2) # Check for updates
- 	if [ $updfirm != " up to date" ]; then # Update available
+ 	if [ $updfirm != " up to date" ]; then # Update available - TODO
   		read -p "Firmware update available, press y to update now or any other key to continue: " input
     		if [ X$input = X"y" ]; then # Apply firmware update
 			rpi-eeprom-update -a
