@@ -2,14 +2,12 @@
 # TODO
 # - 
 
-set -E
+set -e
 
 # Error handler
 handle_error()
 {
-	echo "Something went wrong!"
-	echo "$(caller): ${BASH_COMMAND}"
- 	read -rp "Error: $(caller): ${BASH_COMMAND}" inp </dev/tty
+	echo "Error: $(caller) : ${BASH_COMMAND}"
 }
 
 # Set the error handler to be called when an error occurs
@@ -34,8 +32,7 @@ osarch=$(getconf LONG_BIT)
 export osarch
 repo="rpi-nvme"
 export repo
-reposcr=$(getcwd)
-# reposcr=$(pwd -P)
+reposcr=$PWD
 export reposcr
 
 show_main_menu()
