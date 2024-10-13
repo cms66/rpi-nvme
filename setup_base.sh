@@ -16,8 +16,7 @@ dpkg-divert --add --local --no-rename /bin/sh
 # Error handler
 handle_error()
 {
-	echo "Something went wrong!"
-	echo "$(caller): ${BASH_COMMAND}"
+	echo "Error: $(caller) : ${BASH_COMMAND}"
 }
 
 # Set the error handler to be called when an error occurs
@@ -41,8 +40,8 @@ git clone https://github.com/cms66/$repo.git
 chown -R $usrname:$usrname /home/$usrname/.pisetup
 
 # Add bash alias for setup and test menu
-echo "alias mysetup=\"sudo sh ~/.pisetup/$repo/setup_menu.sh\"" >> /home/$usrname/.bashrc
-echo "alias mytest=\"sudo sh ~/.pisetup/$repo/test_menu.sh\"" >> /home/$usrname/.bashrc
+echo "alias mysetup=\"sudo bash ~/.pisetup/$repo/setup_menu.sh\"" >> /home/$usrname/.bashrc
+echo "alias mytest=\"sudo bash ~/.pisetup/$repo/test_menu.sh\"" >> /home/$usrname/.bashrc
 
 # - Create python Virtual Environment (with access to system level packages) and bash alias for activation
 python -m venv --system-site-packages /home/$usrname/.venv
@@ -59,7 +58,7 @@ cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 
 # Configure firewall (ufw)
 # Allow SSH from local subnet only, unless remote access needed
-read -rp "Allow remote acces (y/n): " inp </dev/tty
+read -rp "Allow remote acces (y/n): "
 if [[ X$inp = X"n" ]]
 then
  	yes | sudo ufw allow from $localnet to any port ssh
@@ -91,7 +90,7 @@ fi
 
 
 # Reboot or Poweroff (if static IP setup needed on router)
-read -rp "Finished base setup press p to poweroff or any other key to reboot: " inp </dev/tty
+read -rp "Finished base setup press p to poweroff or any other key to reboot: "
 if [ X$inp = X"p" ]
 then
 	poweroff
