@@ -4,7 +4,7 @@
 # sudo run this script as created user
 # TODO
 # - Get git repo/branch from curl request url
-# - 
+# - Update firmware
 
 set -e
 
