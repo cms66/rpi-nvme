@@ -57,15 +57,15 @@ read -rp "Select option or x to exit: " n
 # Run as root so using absolute path 
 while [ $n != "x" ]; do
 	case $n in
-		1) sh $usrpath/.pisetup/$repo/setup_hardware.sh;;
-		2) sh $usrpath/.pisetup/$repo/setup_nfs.sh;;
-		3) sh $usrpath/.pisetup/$repo/setup_security.sh;;
-		4) sh $usrpath/.pisetup/$repo/setup_openmpi.sh;;
-		5) sh $usrpath/.pisetup/$repo/setup_opencv.sh;;
-    		6) sh $usrpath/.pisetup/$repo/setup_sdm.sh;;
-    		7) sh $usrpath/.pisetup/$repo/setup_git_pull_setup.sh;;
-    		8) sh $usrpath/.pisetup/$repo/setup_update_system.sh;;
-    		9) sh $usrpath/.pisetup/$repo/setup_system_summary.sh;;    
+		1) bash $usrpath/.pisetup/$repo/setup_hardware.sh;;
+		2) bash $usrpath/.pisetup/$repo/setup_nfs.sh;;
+		3) bash $usrpath/.pisetup/$repo/setup_security.sh;;
+		4) bash $usrpath/.pisetup/$repo/setup_openmpi.sh;;
+		5) bash $usrpath/.pisetup/$repo/setup_opencv.sh;;
+    		6) bash $usrpath/.pisetup/$repo/setup_sdm.sh;;
+    		7) bash $usrpath/.pisetup/$repo/setup_git_pull_setup.sh;;
+    		8) bash $usrpath/.pisetup/$repo/setup_update_system.sh;;
+    		9) bash $usrpath/.pisetup/$repo/setup_system_summary.sh;;    
 		*) read -p "invalid option - press enter to return to menu" errkey;;
 	esac
 	show_main_menu
