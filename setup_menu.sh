@@ -9,6 +9,7 @@ handle_error()
 {
 	echo "Something went wrong!"
 	echo "$(caller): ${BASH_COMMAND}"
+ 	read -rp "Error: $(caller): ${BASH_COMMAND}" inp </dev/tty
 }
 
 # Set the error handler to be called when an error occurs
