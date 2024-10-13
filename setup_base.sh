@@ -41,7 +41,7 @@ apt-get -y install python3-dev gcc g++ gfortran libraspberrypi-dev libomp-dev gi
 mkdir /home/$usrname/.pisetup
 cd /home/$usrname/.pisetup
 git clone https://github.com/cms66/$repo.git
-printf "# Custom configuration\n#--------------------\n\
+printf "# Setup - Custom configuration\n# --------------------\n\
 repo = $repo\n\
 repobranch = $repobranch\n" > /home/$usrname/.pisetup/custom.conf
 chown -R $usrname:$usrname /home/$usrname/.pisetup
