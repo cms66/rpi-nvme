@@ -46,6 +46,7 @@ echo "alias mytest=\"sudo bash ~/.pisetup/$repo/test_menu.sh\"" >> /home/$usrnam
 # - Create python Virtual Environment (with access to system level packages) and bash alias for activation
 python -m venv --system-site-packages /home/$usrname/.venv
 echo "alias myvp=\"source ~/.venv/bin/activate\"" >> /home/$usrname/.bashrc
+echo "alias dvp=\"deactivate\"" >> /home/$usrname/.bashrc
 chown -R $usrname:$usrname /home/$usrname/.venv
 
 # create local folder structure for created user with code examples
