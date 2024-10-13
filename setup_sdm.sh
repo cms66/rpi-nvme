@@ -7,17 +7,6 @@
 # - Add option for version change e.g Bullseye/Bookworm
 # - Add check latest update for current and last versions
 
-# Error handler
-#handle_error()
-#{
-#	echo "Something went wrong!"
-#	echo "$(caller): ${BASH_COMMAND}"
-# 	#read -p "Error: $(caller): ${BASH_COMMAND}" inp
-#}
-
-# Set the error handler to be called when an error occurs
-# trap handle_error ERR
-
 # Declare an associative array for config
 declare -A arrconf
 
@@ -39,10 +28,6 @@ read_config()
 		value=${value#= } # TODO
 		arrconf[$key]="$value"
 	done < $instdir/custom.conf
- 	echo ${arrconf[imgdirectory]}
-  	#$imgdir=${arrconf[imgdirectory]}
-   	#ls $imgdir
- 	read -rp "Current config, press enter to return to menu" input </dev/tty
 }
 
 show_sdm_menu()
