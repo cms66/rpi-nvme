@@ -42,7 +42,7 @@ read_config()
  	echo ${arrconf[imgdirectory]}
   	#$imgdir=${arrconf[imgdirectory]}
    	#ls $imgdir
- 	read -p "Current config, press enter to return to menu" input
+ 	read -rp "Current config, press enter to return to menu" input </dev/tty
 }
 
 show_sdm_menu()
@@ -61,7 +61,7 @@ install_local()
 	# Default setup - install to /usr/local/sdm
 	#curl -L https://raw.githubusercontent.com/gitbls/sdm/master/EZsdmInstaller | bash
   	# Create directories for images
-  	read -p "Path to image directory (press enter for default = $usrpath/share$pinum/sdm/images/): " userdir
+  	read -rp "Path to image directory (press enter for default = $usrpath/share$pinum/sdm/images/): " userdir </dev/tty
 	$imgdir=${userdir:="$usrpath/share$pinum/sdm/images/"}
  	#mkdir -p $imgdir/current
   	#mkdir -p $imgdir/latest
@@ -86,7 +86,7 @@ install_server()
   		exportfs -ra
       #ufw allow from $localnet to $localnet
 	fi
-	read -p "SDM - Server install finished, press enter to return to menu" input
+	read -rp "SDM - Server install finished, press enter to return to menu" input </dev/tty
 }
 
 download_latest_images()
@@ -99,7 +99,7 @@ download_latest_images()
   	wget -P $imgdir/latest $url32lite
    	wget -P $imgdir/latest $url32desk
     	unxz $imgdir/latest/*.xz
-     	read -p "Downloads for $verlatest to $imgdir/latest complete, press enter to return to menu" input
+     	read -rp "Downloads for $verlatest to $imgdir/latest complete, press enter to return to menu" input </dev/tty
 }
 
 customize_image()
@@ -116,7 +116,7 @@ customize_image()
 	# - current
  
   	# Set username/password
-	read -p "Password for $usrname: " usrpass
+	read -rp "Password for $usrname: " usrpass </dev/tty
 	sdm --customize --plugin user:"adduser=$usrname|password=$usrpass" --plugin user:"deluser=pi" --plugin network:"wifissid=TPL_Picluster|wifipassword=81zN3tLAN!WF|wificountry=GB" --plugin L10n:host --plugin disables:piwiz --extend --expand-root --regen-ssh-host-keys --restart $imgout
 }
 
@@ -134,7 +134,7 @@ burn_image()
 read_config
 show_sdm_menu
 
-read -p "Select option or x to exit to main menu: " n
+read -rp "Select option or x to exit to main menu: " n </dev/tty
 while [ $n != "x" ]; do
 	case $n in
 		1) install_local;;
@@ -145,7 +145,7 @@ while [ $n != "x" ]; do
   		*) read -p "invalid option - press enter to continue" errkey;;
 	esac
 	show_sdm_menu
-	read -p "Select option or x to exit to main menu: " n
+	read -p "Select option or x to exit to main menu: " n </dev/tty
 done
 
 
