@@ -2,7 +2,7 @@
 # TODO
 # - 
 
-# set -a
+set -a
 
 # Error handler
 handle_error()
@@ -53,8 +53,8 @@ show_main_menu()
 }
 
 show_main_menu
-read -p "Select option or x to exit: " n
-read -rp "Hardware: " inp </dev/tty
+read -rp "Select option or x to exit: " n </dev/tty
+# read -rp "Hardware: " inp </dev/tty
 
 # Run as root so using absolute path 
 while [ $n != "x" ]; do
@@ -71,5 +71,5 @@ while [ $n != "x" ]; do
 		*) read -p "invalid option - press enter to return to menu" errkey;;
 	esac
 	show_main_menu
-	read -p "Select option or x to exit: " n
+	read -rp "Select option or x to exit: " n </dev/tty
 done
