@@ -8,15 +8,15 @@
 # - Add check latest update for current and last versions
 
 # Error handler
-handle_error()
-{
-	echo "Something went wrong!"
-	echo "$(caller): ${BASH_COMMAND}"
- 	#read -p "Error: $(caller): ${BASH_COMMAND}" inp
-}
+#handle_error()
+#{
+#	echo "Something went wrong!"
+#	echo "$(caller): ${BASH_COMMAND}"
+# 	#read -p "Error: $(caller): ${BASH_COMMAND}" inp
+#}
 
 # Set the error handler to be called when an error occurs
-trap handle_error ERR
+# trap handle_error ERR
 
 # Declare an associative array for config
 declare -A arrconf
