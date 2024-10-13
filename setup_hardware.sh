@@ -1,4 +1,4 @@
 # Hardware
 dostuff
-read -rp "Hardware: " inp </dev/tty
+# read -rp "Hardware: " inp </dev/tty
 
