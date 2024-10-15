@@ -4,7 +4,8 @@
 # sudo run this script as created user
 # TODO
 # - Get git repo/branch from curl request url
-# - Update firmware
+# - Test update firmware (current Pi 4/5 up to date)
+# - Test setup on Desktop
 
 set -e
 
