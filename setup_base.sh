@@ -26,7 +26,7 @@ handle_error()
 # Set the error handler to be called when an error occurs
 trap handle_error ERR
 
-usrname=$(logname)
+usrname=$(logname) # Script runs as root
 piname=$(hostname)
 localnet=$(ip route | awk '/proto/ && !/default/ {print $1}')
 repo="rpi-nvme"
