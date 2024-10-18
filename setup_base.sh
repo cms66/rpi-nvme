@@ -67,7 +67,7 @@ cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 
 # Configure firewall (ufw)
 # Allow SSH from local subnet only, unless remote access needed
-read -rp "Allow remote ssh acces (y/n): " inp #</dev/tty
+read -rp "Allow remote ssh acces (y/n): " inp </dev/tty
 
 if [ X$inp = X"n" ]
 then
@@ -89,7 +89,7 @@ sed -i 's/#PermitRootLogin\ prohibit-password/PermitRootLogin\ no/g' /etc/ssh/ss
 
 # Update firmware - Only applies to model 4/5
 if [ $pimodelnum = "4" ] || [ $pimodelnum = "5" ]; then # Model has firmware
-	updfirm=$(sudo rpi-eeprom-update | grep BOOTLOADER | cut -d ":" -f 2) # Check for updates
+	updfirm=$(sudo rpi-eeprom-update | grep BOOTLOADER | cut -d ":" -f 2) # Check for updates gives bash: line 92: [: too many arguments
  	if [ $updfirm != " up to date" ]; then # Update available - TODO - too many args
   		read -p "Firmware update available, press y to update now or any other key to continue: " input
     		if [ X$input = X"y" ]; then # Apply firmware update
