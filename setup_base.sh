@@ -69,11 +69,11 @@ cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 # Allow SSH from local subnet only, unless remote access needed
 read -rp "Allow remote ssh acces (y/n): " inp </dev/tty
 
-if [ X$inp = X"n" ]
-then
- 	yes | sudo ufw allow from $localnet to any port ssh
-else
+if [ X$inp = X"y" ] # TODO - not case insensitive
+then # Remote
  	yes | sudo ufw allow ssh
+else # Local
+	yes | sudo ufw allow from $localnet to any port ssh
 fi
 yes | sudo ufw logging on
 yes | sudo ufw enable
@@ -89,13 +89,22 @@ sed -i 's/#PermitRootLogin\ prohibit-password/PermitRootLogin\ no/g' /etc/ssh/ss
 
 # Update firmware - Only applies to model 4/5
 if [ $pimodelnum = "4" ] || [ $pimodelnum = "5" ]; then # Model has firmware
-	updfirm=$(sudo rpi-eeprom-update | grep BOOTLOADER | cut -d ":" -f 2) # Check for updates gives bash: line 92: [: too many arguments
- 	if [ $updfirm != " up to date" ]; then # Update available - TODO - too many args
-  		read -p "Firmware update available, press y to update now or any other key to continue: " input
-    		if [ X$input = X"y" ]; then # Apply firmware update
-			rpi-eeprom-update -a
+	printf "Model has firmware\n"
+	updfirm=$(sudo rpi-eeprom-update | grep BOOTLOADER | cut -d ":" -f 2 | tr -d '[:blank:]') # Check for updates
+	printf "Update status: $updfirm\n"
+ 	if ! [ $updfirm = "uptodate" ]; then # Update available - TODO - too many args
+ 		printf "Update available\n"
+  		read -p "Firmware update available, press y to update now or any other key to continue: " input </dev/tty
+  		printf "Update selected\n"
+    	if [ X$input = X"y" ]; then # Apply firmware update
+    		printf "Update firmware\n"
+			# rpi-eeprom-update -a
    		fi
-     	fi
+     else
+     	printf "Firmware is up to date\n"
+     fi
+else
+	printf "No firmware\n"
 fi
 
 # Reboot or Poweroff (if static IP setup needed on router)
