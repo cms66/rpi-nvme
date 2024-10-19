@@ -26,17 +26,17 @@ read_config()
   		key=${line%% *} # Works
 		value=${line#* } # TODO
 		value=${value#= } # TODO
-		arrconf[$key]="$value"
+		$arrconf[$key]="$value"
 	done < $instdir/custom.conf
 }
 
 show_config()
 {
 	printf "Config\n\
-	arrconf[imgdirectory]\n\
-	arrconf[wificountry]\n\
-	arrconf[wifissid]\n\
-	arrconf[wifipassword]\n"
+	$arrconf[imgdirectory]\n\
+	$arrconf[wificountry]\n\
+	$arrconf[wifissid]\n\
+	$arrconf[wifipassword]\n"
  	read -p "Select option or x to exit to main menu: " n
 }
 
