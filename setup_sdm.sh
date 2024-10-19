@@ -28,16 +28,16 @@ read_config()
 		value=${value#= } # TODO
 		arrconf[$key]="$value"
 	done < $instdir/custom.conf
- 	read -p "Read config done " n
 }
 
 show_config()
 {
 	printf "Config\n\
-${arrconf[imgdirectory]}\n\
-${arrconf[wificountry]}\n\
-${arrconf[wifissid]}\n\
-${arrconf[wifipassword]}\n"
+#${arrconf[imgdirectory]}\n\
+#${arrconf[wificountry]}\n\
+#${arrconf[wifissid]}\n\
+#${arrconf[wifipassword]}\n"
+${arrconf[@]}\n"
 read -p "Show config done " n
 }
 
@@ -83,7 +83,7 @@ wifipassword = $wfpwd\n\
 
 install_server()
 {
-	#install_local
+	install_local
  	if grep -F "/usr/local" "/etc/exports"; then
   		echo "export exists"
   	else
