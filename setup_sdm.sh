@@ -131,8 +131,8 @@ burn_image()
   	#imgburn=$imgdir/current/2024-07-04_64desk.img
 	# Create list for drive selection
  	# lsblk | cut -f 1 -d " " | sed "s/[^[:alnum:]]//g" # gives sd* mmcblk* nvme*
- 	drvtarget=sda
-	sdm --burn /dev/$drvtarget --hostname pinode-7 --expand-root $imgburn
+ 	drvtarget=nvme0n1
+	sdm --burn /dev/$drvtarget --hostname pinode-1 --expand-root $imgburn
 }
 
 read_config
