@@ -32,12 +32,12 @@ read_config()
 
 show_config()
 {
-	printf "${arrconf[@]}\n"
-#${arrconf[imgdirectory]}\n\
-#${arrconf[wificountry]}\n\
-#${arrconf[wifissid]}\n\
-#${arrconf[wifipassword]}\n"
-#${arrconf[@]}\n"
+	printf "Config\n"
+${arrconf[imgdirectory]}\n\
+${arrconf[wificountry]}\n\
+${arrconf[wifissid]}\n\
+${arrconf[wifipassword]}\n"
+${arrconf[@]}\n"
 read -p "Show config done " n
 }
 
