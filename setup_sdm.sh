@@ -30,6 +30,15 @@ read_config()
 	done < $instdir/custom.conf
 }
 
+show_config()
+{
+printf "Config\n\
+arrconf[imgdirectory]\n\
+arrconf[wificountry]\n\
+arrconf[wifissid]\n\
+arrconf[wifipassword]\n"
+}
+
 show_sdm_menu()
 {
 	clear
@@ -38,7 +47,8 @@ show_sdm_menu()
  2) Install - server \n\
  3) Download latest images \n\
  4) Customize image \n\
- 5) Burn image \n"
+ 5) Burn image \n\
+ 6) Show config \n"
 }
 
 install_local()
@@ -52,7 +62,10 @@ install_local()
     
   	read -rp "Path to image directory (press enter for default = $usrpath/share$pinum/sdm/images/): " userdir </dev/tty
 	$imgdir=${userdir:="$usrpath/share$pinum/sdm/images/"}
- 	mkdir -p $imgdir/current
+ 	read -rp "WiFi country : " wfcountry </dev/tty
+ 	read -rp "WiFi SSID : " wfssid </dev/tty
+  	read -rp "WiFi Password : " wfpwd </dev/tty
+  	mkdir -p $imgdir/current
   	mkdir -p $imgdir/latest
    	mkdir -p $imgdir/archive
     	chown -R $usrname:$usrname $imgdir
@@ -60,6 +73,9 @@ install_local()
   	# Create custom.conf in installation directory
    	printf "# Custom configuration\n# --------------------\n\
 imgdirectory = $imgdir\n\
+wificountry = $wfcountry\n\
+wifissid = $wfssid\n\
+wifipassword = $wfpwd\n\
 # End of custom config\n" > $instdir/custom.conf
 }
 
