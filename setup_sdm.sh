@@ -26,7 +26,7 @@ read_config()
   		key=${line%% *} # Works
 		value=${line#* } # TODO
 		value=${value#= } # TODO
-		$arrconf[$key]="$value"
+		arrconf[$key]="$value"
 	done < $instdir/custom.conf
  	read -p "Read config done " n
 }
