@@ -144,7 +144,8 @@ while [ $n != "x" ]; do
 		2) install_server;;
 		3) download_latest_images;;
 		4) customize_image;;
-		5) burn_image;;  
+		5) burn_image;;
+  		6) show_config;;
   		*) read -p "invalid option - press enter to continue" errkey;;
 	esac
 	show_sdm_menu
