@@ -28,6 +28,7 @@ read_config()
 		value=${value#= } # TODO
 		$arrconf[$key]="$value"
 	done < $instdir/custom.conf
+ 	read -p "Read config done " n
 }
 
 show_config()
@@ -37,7 +38,7 @@ $arrconf[imgdirectory]\n\
 $arrconf[wificountry]\n\
 $arrconf[wifissid]\n\
 $arrconf[wifipassword]\n"
-read -p "Select option or x to exit to main menu: " n
+read -p "Show config done " n
 }
 
 show_sdm_menu()
