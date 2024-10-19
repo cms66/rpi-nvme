@@ -36,8 +36,7 @@ show_config()
 ${arrconf[imgdirectory]}\n\
 ${arrconf[wificountry]}\n\
 ${arrconf[wifissid]}\n\
-${arrconf[wifipassword]}\n\
-${arrconf[@]}\n"
+${arrconf[wifipassword]}\n"
 read -p "Show config done " n
 }
 
@@ -111,29 +110,29 @@ customize_image()
 {
 	# Select image from
  	# - latest or current
-  	
- 	#imgmod=$imgdir/latest/2024-07-04-raspios-bookworm-arm64-lite.img
-  	imgmod=$imgdir/latest/2024-07-04-raspios-bookworm-arm64.img
+  	# read -rp "Use latest or current image? (l/c): " inp
+ 	imgmod=$imgdir/latest/2024-07-04-raspios-bookworm-arm64-lite.img
+  	# imgmod=$imgdir/latest/2024-07-04-raspios-bookworm-arm64.img
   	# Set target filename + copy to current 
-   	#imgout=$imgdir/current/2024-07-04_64lite.img
-    	imgout=$imgdir/current/2024-07-04_64desk.img
+   	imgout=$imgdir/current/2024-07-04_64lite.img
+    	# imgout=$imgdir/current/2024-07-04_64desk.img
 	cp $imgmod $imgout
 	# - current
  
   	# Set username/password
 	read -rp "Password for $usrname: " usrpass </dev/tty
-	sdm --customize --plugin user:"adduser=$usrname|password=$usrpass" --plugin user:"deluser=pi" --plugin network:"wifissid=TPL_Picluster|wifipassword=81zN3tLAN!WF|wificountry=GB" --plugin L10n:host --plugin disables:piwiz --extend --expand-root --regen-ssh-host-keys --restart $imgout
+	sdm --customize --plugin user:"adduser=$usrname|password=$usrpass" --plugin user:"deluser=pi" --plugin network:"wifissid=${arrconf[wifissid]}|wifipassword=${arrconf[wifipassword]}|wificountry=${arrconf[wificountry]}" --plugin L10n:host --plugin disables:piwiz --extend --expand-root --regen-ssh-host-keys --restart $imgout
 }
 
 burn_image()
 {
 	# Select image
- 	#imgburn=$imgdir/current/2024-07-04_64lite.img
-  	imgburn=$imgdir/current/2024-07-04_64desk.img
+ 	imgburn=$imgdir/current/2024-07-04_64lite.img
+  	#imgburn=$imgdir/current/2024-07-04_64desk.img
 	# Create list for drive selection
  	# lsblk | cut -f 1 -d " " | sed "s/[^[:alnum:]]//g" # gives sd* mmcblk* nvme*
  	drvtarget=sda
-	sdm --burn /dev/$drvtarget --hostname pinode-5 --expand-root $imgburn
+	sdm --burn /dev/$drvtarget --hostname pinode-7 --expand-root $imgburn
 }
 
 read_config
