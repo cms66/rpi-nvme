@@ -103,6 +103,7 @@ download_latest_images()
   	wget -P $imgdir/latest $url32lite
    	wget -P $imgdir/latest $url32desk
     	unxz $imgdir/latest/*.xz
+     	chown $usrname:$usrname $imgdir/latest/*.img
      	read -rp "Downloads for $verlatest to $imgdir/latest complete, press enter to return to menu" input </dev/tty
 }
 
