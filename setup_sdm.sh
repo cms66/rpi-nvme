@@ -83,7 +83,7 @@ wifipassword = $wfpwd\n\
 
 install_server()
 {
-	install_local
+	#install_local
  	if grep -F "/usr/local" "/etc/exports"; then
   		echo "export exists"
   	else
