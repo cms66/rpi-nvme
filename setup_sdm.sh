@@ -34,7 +34,7 @@ read_config()
 show_config()
 {
 	printf "Config\n\
-$(arrconf[imgdirectory])\n\
+${arrconf[imgdirectory]}\n\
 arrconf[wificountry]\n\
 arrconf[wifissid]\n\
 arrconf[wifipassword]\n"
